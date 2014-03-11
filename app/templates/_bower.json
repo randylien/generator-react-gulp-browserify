@@ -1,0 +1,8 @@
+{
+  "name": "package",
+  "version": "0.0.0",
+  "dependencies": {
+    "react": "~0.9.0"
+  }
+}
+
