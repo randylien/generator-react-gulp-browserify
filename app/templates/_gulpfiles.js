@@ -127,12 +127,14 @@ gulp.task('watch', ['connect'], function () {
     // Watch .scss files
     gulp.watch('app/styles/**/*.scss', ['styles']);
 
+<% if (includeStylus) { %>
     // Watch .stylus files
     gulp.watch('app/styles/**/*.styl', ['stylus', 'styles']);
-
+<% } %>
+<% if (includeCoffeeScript) { %>
     // Watch .coffeescript files
     gulp.watch('app/scripts/**/*.coffee', ['coffee', 'scripts']);
-
+<% } %>
     // Watch .js files
     gulp.watch('app/scripts/**/*.js', ['scripts']);
 

@@ -14,8 +14,8 @@
     "gulp-size": "~0.1.2",<% if (includeSass) { %>
     "gulp-ruby-sass": "~0.3.0",<% } %>
     "gulp-connect": "~1.0.0",
-    "gulp-useref": "~0.1.2", <% if (includeCoffeeScript) { %>
-    "gulp-coffee": "~1.4.1", <% } %>
+    "gulp-useref": "~0.1.2",<% if (includeCoffeeScript) { %>
+    "gulp-coffee": "~1.4.1",<% } %>
     "gulp-bundle": "~0.2.0",<% if (includeStylus) { %>
     "gulp-stylus": "0.0.13",<% } %>
     "gulp-browserify": "~0.4.6"
