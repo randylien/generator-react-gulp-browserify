@@ -76,6 +76,7 @@ var ReactGulpBrowserifyGenerator = yeoman.generators.Base.extend({
         this.mkdir('app/images');
 
         this.template('_package.json', 'package.json');
+        this.template('_gulfiles.js', 'gulfiles.js');
         this.copy('_bower.json', 'bower.json');
     },
 
