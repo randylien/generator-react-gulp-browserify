@@ -42,6 +42,10 @@ var ReactGulpBrowserifyGenerator = yeoman.generators.Base.extend({
                 value: 'includeModernizr',
                 checked: true
             }, {
+                name: 'HTML template - Jade',
+                value: 'includeJade',
+                checked: true
+            }, {
                 name: 'Stylus with nib',
                 value: 'includeStylus',
                 checked: true
@@ -63,6 +67,7 @@ var ReactGulpBrowserifyGenerator = yeoman.generators.Base.extend({
             this.includeBootstrap = hasFeature('includeBootstrap');
             this.includeModernizr = hasFeature('includeModernizr');
             this.includeStylus = hasFeature('includeStylus');
+            this.includeJade = hasFeature('includeJade');
             this.includeCoffeeScript = hasFeature('includeCoffeeScript');
 
             done();

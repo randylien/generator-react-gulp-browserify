@@ -31,7 +31,14 @@ describe('react-gulp-browserify generator', function () {
 
 
     helpers.mockPrompt(this.app, {
-      features: ['includeSass', 'includeBootstrap', 'includeModernizr', 'includeStylus', 'includeCoffeeScript']
+        features: [
+            'includeSass',
+            'includeBootstrap',
+            'includeModernizr',
+            'includeStylus',
+            'includeJade',
+            'includeCoffeeScript'
+        ]
     });
     this.app.options['skip-install'] = true;
     this.app.run({}, function () {
