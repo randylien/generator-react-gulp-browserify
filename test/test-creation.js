@@ -19,13 +19,19 @@ describe('react-gulp-browserify generator', function () {
 
   it('creates expected files', function (done) {
     var expected = [
-      // add files you expect to exist here.
-      '.jshintrc',
-      '.editorconfig'
+        '.jshintrc',
+        '.editorconfig',
+        'bower.json',
+        'package.json',
+        'gulpfile.js'
+        // 'app/index.html',
+        // 'app/scripts/main.js',
+        // 'app/styles/main.scss'
     ];
 
+
     helpers.mockPrompt(this.app, {
-      'someOption': true
+      features: ['includeSass', 'includeBootstrap', 'includeModernizr', 'includeStylus', 'includeCoffeeScript']
     });
     this.app.options['skip-install'] = true;
     this.app.run({}, function () {
