@@ -23,10 +23,9 @@ describe('react-gulp-browserify generator', function () {
         '.editorconfig',
         'bower.json',
         'package.json',
-        'gulpfile.js'
-        // 'app/index.html',
-        // 'app/scripts/main.js',
-        // 'app/styles/main.scss'
+        'gulpfile.js',
+        'app/index.html',
+        'app/scripts/main.js'
     ];
 
 

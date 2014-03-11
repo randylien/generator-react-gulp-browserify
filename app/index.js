@@ -26,6 +26,10 @@ var ReactGulpBrowserifyGenerator = yeoman.generators.Base.extend({
         console.log(chalk.magenta('You\'re using the fantastic React generator. We provide you full JavaScript solution with Sass support!'));
 
         var prompts = [{
+            name: 'project',
+            message: 'What is this project\'s name?'
+        },
+        {
             type: 'checkbox',
             name: 'features',
             message: 'What more would you like?',
@@ -59,6 +63,8 @@ var ReactGulpBrowserifyGenerator = yeoman.generators.Base.extend({
         this.prompt(prompts, function (answers) {
             var features = answers.features;
 
+            this.projectName = answers.project;
+
             function hasFeature(feat) { return features.indexOf(feat) !== -1; }
 
             // manually deal with the response, get back and store the results.
@@ -79,10 +85,16 @@ var ReactGulpBrowserifyGenerator = yeoman.generators.Base.extend({
         this.mkdir('app/scripts');
         this.mkdir('app/styles');
         this.mkdir('app/images');
+        this.write('app/scripts/main.js', 'console.log(\'\\\'Allo \\\'Allo!\');');
 
         this.template('_package.json', 'package.json');
         this.template('_gulpfile.js', 'gulpfile.js');
-        this.copy('_bower.json', 'bower.json');
+        this.template('_bower.json', 'bower.json');
+
+        this.copy('index.html', 'app/index.html');
+        this.copy('favicon.ico', 'app/favicon.ico');
+        this.copy('robots.txt', 'app/robots.txt');
+
     },
 
     projectfiles: function () {
