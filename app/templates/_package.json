@@ -10,7 +10,9 @@
     "gulp-jshint": "~1.4.0",
     "gulp-imagemin": "~0.1.4",
     "gulp-clean": "~0.2.4",
+    "gulp-bower": "0.0.3",
     "gulp-cache": "~0.1.1",
+    "gulp-react": "~0.2.0",
     "gulp-size": "~0.1.2",<% if (includeSass) { %>
     "gulp-ruby-sass": "~0.3.0",<% } %>
     "gulp-connect": "~1.0.0",<% if (includeJade) { %>
