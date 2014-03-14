@@ -50,8 +50,8 @@ var ReactGulpBrowserifyGenerator = yeoman.generators.Base.extend({
                 value: 'includeJade',
                 checked: true
             }, {
-                name: 'Stylus with nib',
-                value: 'includeStylus',
+                name: 'Less CSS',
+                value: 'includeLess',
                 checked: true
             }, {
                 name: 'CoffeeScript for JavaScript',
@@ -72,7 +72,7 @@ var ReactGulpBrowserifyGenerator = yeoman.generators.Base.extend({
             this.includeSass = hasFeature('includeSass');
             this.includeBootstrap = hasFeature('includeBootstrap');
             this.includeModernizr = hasFeature('includeModernizr');
-            this.includeStylus = hasFeature('includeStylus');
+            this.includeLess = hasFeature('includeLess');
             this.includeJade = hasFeature('includeJade');
             this.includeCoffeeScript = hasFeature('includeCoffeeScript');
 
@@ -85,14 +85,14 @@ var ReactGulpBrowserifyGenerator = yeoman.generators.Base.extend({
         this.mkdir('app/scripts');
         this.mkdir('app/styles');
         this.mkdir('app/images');
-        this.write('app/scripts/main.js', 'console.log(\'\\\'Allo \\\'Allo!\');');
+        this.write('app/scripts/app.js', 'console.log(\'\\\'Allo \\\'Allo!\');');
 
         this.template('_package.json', 'package.json');
         this.template('_gulpfile.js', 'gulpfile.js');
         this.template('_bower.json', 'bower.json');
+        this.template('main.less', 'main.less');
 
         this.copy('index.html', 'app/index.html');
-        this.copy('main.css', 'app/styles/main.css');
         this.copy('favicon.ico', 'app/favicon.ico');
         this.copy('bowerrc', '.bowerrc');
         this.copy('robots.txt', 'app/robots.txt');

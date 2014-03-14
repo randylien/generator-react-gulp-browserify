@@ -1,3 +1,7 @@
+<% if (includeLess) { %>@icon-font-path: "/bower_components/bootstrap/fonts/";
+
+@import '../bower_components/bootstrap/less/bootstrap';
+
 .browsehappy {
     margin: 0.2em 0;
     background: #ccc;
@@ -22,14 +26,14 @@ body {
 /* Custom page header */
 .header {
     border-bottom: 1px solid #e5e5e5;
-}
 
-/* Make the masthead heading the same height as the navigation */
-.header h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 40px;
-    padding-bottom: 19px;
+    /* Make the masthead heading the same height as the navigation */
+    h3 {
+        margin-top: 0;
+        margin-bottom: 0;
+        line-height: 40px;
+        padding-bottom: 19px;
+    }
 }
 
 /* Custom page footer */
@@ -47,20 +51,18 @@ body {
 .jumbotron {
     text-align: center;
     border-bottom: 1px solid #e5e5e5;
-}
-
-.jumbotron .btn {
-    font-size: 21px;
-    padding: 14px 24px;
+    .btn {
+        font-size: 21px;
+        padding: 14px 24px;
+    }
 }
 
 /* Supporting marketing content */
 .marketing {
     margin: 40px 0;
-}
-
-.marketing p + h4 {
-    margin-top: 28px;
+    p + h4 {
+        margin-top: 28px;
+    }
 }
 
 /* Responsive: Portrait tablets and up */
@@ -86,4 +88,31 @@ body {
     .jumbotron {
         border-bottom: 0;
     }
+}<% } else { %>body {
+    background: #fafafa;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #333;
 }
+
+.hero-unit {
+    margin: 50px auto 0 auto;
+    width: 300px;
+    font-size: 18px;
+    font-weight: 200;
+    line-height: 30px;
+    background-color: #eee;
+    border-radius: 6px;
+    padding: 60px;
+    h1 {
+        font-size: 60px;
+        line-height: 1;
+        letter-spacing: -1px;
+    }
+}
+
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}<% } %>

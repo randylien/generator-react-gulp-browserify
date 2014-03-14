@@ -20,13 +20,11 @@ gulp.task('sass', function () {
 });
 <% } %>
 
-<% if (includeStylus) { %>
+<% if (includeLess) { %>
 // Stylus compile
-gulp.task('stylus', function () {
-    return gulp.src('app/styles/**/*.styl')
-        .pipe($.stylus({
-            set:['compress']
-        }))
+gulp.task('less', function () {
+    return gulp.src('app/styles/main.less')
+        .pipe($.less())
         .pipe($.autoprefixer('last 1 version'))
         .pipe(gulp.dest('dist/styles'))
         .pipe($.size())
@@ -59,7 +57,8 @@ gulp.task('styles', function () {
 gulp.task('scripts', function () {
     return gulp.src('app/scripts/app.js')
         .pipe($.browserify({
-            insertGlobals: true
+            insertGlobals: true,
+            transform: ['reactify']
         }))
         .pipe($.jshint('.jshintrc'))
         .pipe($.jshint.reporter('default'))
@@ -69,15 +68,15 @@ gulp.task('scripts', function () {
     });
 
 // React precomiler
-gulp.task('jsx', function () {
-    return gulp.src('app/scripts/**/*.jsx')
-        .pipe($.react())
-        .pipe($.jshint('.jshintrc'))
-        .pipe($.jshint.reporter('default'))
-        .pipe(gulp.dest('app/scripts'))
-        .pipe($.size())
-        .pipe($.connect.reload());
-    });
+// gulp.task('jsx', function () {
+//     return gulp.src('app/scripts/**/*.jsx', {base: 'app/scripts'})
+//         .pipe($.react())
+//         .pipe($.jshint('.jshintrc'))
+//         .pipe($.jshint.reporter('default'))
+//         .pipe(gulp.dest('app/scripts'))
+//         .pipe($.size())
+//         .pipe($.connect.reload());
+//     });
 
 
 
@@ -160,15 +159,15 @@ gulp.task('watch', ['html', 'bundle', 'connect'], function () {
     gulp.watch('app/*.html', ['html']);
 
     // Watch .scss files
-    gulp.watch('app/styles/**/*.scss', ['styles']);
+    gulp.watch('app/styles/**/*.css', ['styles']);
 
 <% if (includeJade) { %>
     // Watch .jade files
     gulp.watch('app/template/**/*.jade', ['jade', 'html']);
 <% } %>
-<% if (includeStylus) { %>
-    // Watch .stylus files
-    gulp.watch('app/styles/**/*.styl', ['stylus', 'styles']);
+<% if (includeLess) { %>
+    // Watch .less files
+    gulp.watch('app/styles/**/*.less', ['less', 'styles']);
 <% } %>
 <% if (includeCoffeeScript) { %>
     // Watch .coffeescript files
@@ -176,7 +175,7 @@ gulp.task('watch', ['html', 'bundle', 'connect'], function () {
 <% } %>
 
     // Watch .jsx files
-    gulp.watch('app/scripts/**/*.jsx', ['jsx', 'scripts']);
+    // gulp.watch('app/scripts/**/*.jsx', ['jsx', 'scripts']);
 
     // Watch .js files
     gulp.watch('app/scripts/**/*.js', ['scripts']);

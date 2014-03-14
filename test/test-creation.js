@@ -25,7 +25,7 @@ describe('react-gulp-browserify generator', function () {
         'package.json',
         'gulpfile.js',
         'app/index.html',
-        'app/scripts/main.js'
+        'app.js'
     ];
 
 
@@ -34,7 +34,7 @@ describe('react-gulp-browserify generator', function () {
             'includeSass',
             'includeBootstrap',
             'includeModernizr',
-            'includeStylus',
+            'includeLess',
             'includeJade',
             'includeCoffeeScript'
         ]
