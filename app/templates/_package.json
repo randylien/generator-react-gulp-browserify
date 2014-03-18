@@ -21,9 +21,7 @@
     "gulp-coffee": "~1.4.1",<% } %>
     "gulp-bundle": "~0.2.0",
     "gulp-browserify": "~0.4.6",
-    "reactify": "~0.10.0",
-    "less": "~1.7.0",
-    "gulp-less": "~1.2.3"
+    "reactify": "~0.10.0"
   },
   "engines": {
     "node": ">=0.10.0"
