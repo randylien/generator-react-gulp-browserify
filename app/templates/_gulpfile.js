@@ -7,7 +7,7 @@ var $ = require('gulp-load-plugins')();
 
 <% if (includeSass) { %>
 // Styles
-gulp.task('sass', function () {
+gulp.task('styles', function () {
     return gulp.src('app/styles/main.scss')
         .pipe($.rubySass({
             style: 'expanded',
@@ -31,15 +31,6 @@ gulp.task('coffee', function () {
         .pipe(gulp.dest('app/scripts'));
 });
 <% } %>
-
-// Styles
-gulp.task('styles', function () {
-    return gulp.src('app/styles/**/*.css')
-        .pipe($.autoprefixer('last 1 version'))
-        .pipe(gulp.dest('dist/styles'))
-        .pipe($.size())
-        .pipe($.connect.reload());
-});
 
 // Scripts
 gulp.task('scripts', function () {
@@ -107,7 +98,7 @@ gulp.task('clean', function () {
 });
 
 // Bundle
-gulp.task('bundle', ['styles', 'scripts', 'bower'], $.bundle('./app/*.html'));
+gulp.task('bundle', [<% if (includeSass) { %>'styles', <% } %>'scripts', 'bower'], $.bundle('./app/*.html'));
 
 // Build
 gulp.task('build', ['html', 'bundle', 'images']);
@@ -124,7 +115,7 @@ gulp.task('connect', $.connect.server({
     livereload: true
 }));
 
-
+// Bower helper
 gulp.task('bower', function() {
     gulp.src('app/bower_components/**/*.js', {base: 'app/bower_components'})
         .pipe(gulp.dest('dist/bower_components/'));
@@ -146,8 +137,10 @@ gulp.task('watch', ['html', 'bundle', 'connect'], function () {
     // Watch .html files
     gulp.watch('app/*.html', ['html']);
 
+    <% if (includeSass) { %>
     // Watch .scss files
-    gulp.watch('app/styles/**/*.css', ['styles']);
+    gulp.watch('app/styles/**/*.scss', ['styles']);
+    <% } %>
 
 <% if (includeJade) { %>
     // Watch .jade files
