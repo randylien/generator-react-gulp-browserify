@@ -9,8 +9,9 @@
 * browserify
 * reactify - Help to convert JSX to React
 * coffeescript
-* bootstrap - twitter bootstrap sass official version
-* jade - html template 
+* bootstrap-sass-official - twitter bootstrap official Sass version
+* jade - html template
+* livereload
 
 ## Getting Started
 
