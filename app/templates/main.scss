@@ -1,6 +1,6 @@
-<% if (includeLess) { %>@icon-font-path: "/bower_components/bootstrap/fonts/";
+<% if (includeBootstrap) { %>$icon-font-path: "/bower_components/bootstrap-sass-official/vender/assets/fonts/";
 
-@import '../bower_components/bootstrap/less/bootstrap';
+@import "bootstrap-sass/vendor/assets/stylesheets/bootstrap";
 
 .browsehappy {
     margin: 0.2em 0;

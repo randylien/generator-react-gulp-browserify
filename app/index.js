@@ -85,7 +85,7 @@ var ReactGulpBrowserifyGenerator = yeoman.generators.Base.extend({
         this.template('_package.json', 'package.json');
         this.template('_gulpfile.js', 'gulpfile.js');
         this.template('_bower.json', 'bower.json');
-        this.template('main.scss', 'main.scss');
+        this.template('main.scss', 'app/styles/main.scss');
 
         this.copy('index.html', 'app/index.html');
         this.copy('favicon.ico', 'app/favicon.ico');
