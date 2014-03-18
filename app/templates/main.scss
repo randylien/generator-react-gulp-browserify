@@ -1,6 +1,6 @@
 <% if (includeBootstrap) { %>$icon-font-path: "/bower_components/bootstrap-sass-official/vender/assets/fonts/";
 
-@import "bootstrap-sass/vendor/assets/stylesheets/bootstrap";
+@import "bootstrap-sass-official/vendor/assets/stylesheets/bootstrap";
 
 .browsehappy {
     margin: 0.2em 0;
