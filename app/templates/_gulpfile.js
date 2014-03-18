@@ -20,18 +20,6 @@ gulp.task('sass', function () {
 });
 <% } %>
 
-<% if (includeLess) { %>
-// Stylus compile
-gulp.task('less', function () {
-    return gulp.src('app/styles/main.less')
-        .pipe($.less())
-        .pipe($.autoprefixer('last 1 version'))
-        .pipe(gulp.dest('dist/styles'))
-        .pipe($.size())
-        .pipe($.connect.reload());
-});
-
-<% } %>
 
 <% if (includeCoffeeScript) { %>
 // CoffeeScript
@@ -165,10 +153,7 @@ gulp.task('watch', ['html', 'bundle', 'connect'], function () {
     // Watch .jade files
     gulp.watch('app/template/**/*.jade', ['jade', 'html']);
 <% } %>
-<% if (includeLess) { %>
-    // Watch .less files
-    gulp.watch('app/styles/**/*.less', ['less', 'styles']);
-<% } %>
+
 <% if (includeCoffeeScript) { %>
     // Watch .coffeescript files
     gulp.watch('app/scripts/**/*.coffee', ['coffee', 'scripts']);
