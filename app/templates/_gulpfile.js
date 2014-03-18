@@ -24,7 +24,7 @@ gulp.task('styles', function () {
 <% if (includeCoffeeScript) { %>
 // CoffeeScript
 gulp.task('coffee', function () {
-    return gulp.src('app/coffee/**/*.coffee')
+    return gulp.src('app/scripts/**/*.coffee', {base: 'app/scripts'})
         .pipe(
             $.coffee({ bare: true }).on('error', $.util.log)
         )
