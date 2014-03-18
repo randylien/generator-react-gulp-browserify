@@ -7,7 +7,7 @@
 
 * gulp
 * browserify
-* reactify - Help to convert JSX to React
+* reactify - Help to transform JSX to React
 * coffeescript
 * bootstrap-sass-official - twitter bootstrap official Sass version
 * jade - html template
@@ -33,6 +33,14 @@ Finally, initiate the generator:
 
 ```
 $ yo react-gulp-browserify
+```
+
+### Run task
+
+Run watch task and begin to develop your React components with cool livereload feature!
+
+```
+$ gulp watch
 ```
 
 ## License
