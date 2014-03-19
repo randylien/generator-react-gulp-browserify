@@ -1,13 +1,12 @@
 # generator-react-gulp-browserify [![Build Status](https://secure.travis-ci.org/randylien/generator-react-gulp-browserify.png?branch=master)](https://travis-ci.org/randylien/generator-react-gulp-browserify)
 
-> [Yeoman](http://yeoman.io) generator
-
+> [Yeoman](http://yeoman.io) generator for facebook's React framework - Integrate with gulp and browserify.
 
 ## What's inside?
 
 * gulp
 * browserify
-* reactify - Help to transform JSX to React
+* reactify - Help to transform JSX
 * coffeescript
 * bootstrap-sass-official - twitter bootstrap official Sass version
 * jade - html template
@@ -37,7 +36,7 @@ $ yo react-gulp-browserify
 
 ### Run task
 
-Run watch task and begin to develop your React components with cool livereload feature!
+Run watch task and begin to develop your React components.
 
 ```
 $ gulp watch
