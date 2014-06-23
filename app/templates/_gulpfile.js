@@ -100,7 +100,11 @@ gulp.task('clean', function () {
 
 // Bundle
 gulp.task('bundle', [<% if (includeSass) { %>'styles', <% } %>'scripts', 'bower'], function(){
-    return gulp.src('./app/*.html');
+    return gulp.src('./app/*.html')
+               .pipe($.useref.assets())
+               .pipe($.useref.restore())
+               .pipe($.useref())
+               .pipe(gulp.dest('dist'));
 });
 
 // Build
