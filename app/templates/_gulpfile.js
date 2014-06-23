@@ -97,11 +97,8 @@ gulp.task('clean', function () {
     return gulp.src(['dist/styles', 'dist/scripts', 'dist/images'], {read: false}).pipe($.clean());
 });
 
-// Bundle
-gulp.task('bundle', [<% if (includeSass) { %>'styles', <% } %>'scripts', 'bower'], $.bundle('./app/*.html'));
-
 // Build
-gulp.task('build', ['html', 'bundle', 'images']);
+gulp.task('build', ['html', 'images']);
 
 // Default task
 gulp.task('default', ['clean'], function () {
@@ -129,7 +126,7 @@ gulp.task('json', function() {
 
 
 // Watch
-gulp.task('watch', ['html', 'bundle', 'connect'], function () {
+gulp.task('watch', ['html', 'connect'], function () {
 
     // Watch .json files
     gulp.watch('app/scripts/**/*.json', ['json']);
