@@ -98,7 +98,9 @@ gulp.task('clean', function () {
 });
 
 // Bundle
-gulp.task('bundle', [<% if (includeSass) { %>'styles', <% } %>'scripts', 'bower'], $.bundle('./app/*.html'));
+gulp.task('bundle', [<% if (includeSass) { %>'styles', <% } %>'scripts', 'bower'], function(){
+    return gulp.src('./app/*.html');
+});
 
 // Build
 gulp.task('build', ['html', 'bundle', 'images']);
