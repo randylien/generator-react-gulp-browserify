@@ -78,6 +78,7 @@ var ReactGulpBrowserifyGenerator = yeoman.generators.Base.extend({
     app: function () {
         this.mkdir('app');
         this.mkdir('app/scripts');
+        this.mkdir('app/scripts/ui');
         this.mkdir('app/styles');
         this.mkdir('app/images');
 
@@ -88,6 +89,7 @@ var ReactGulpBrowserifyGenerator = yeoman.generators.Base.extend({
 
         this.copy('index.html', 'app/index.html');
         this.copy('app.js', 'app/scripts/app.js');
+        this.copy('ui/Timer.js', 'app/scripts/ui/Timer.js');
         this.copy('favicon.ico', 'app/favicon.ico');
         this.copy('bowerrc', '.bowerrc');
         this.copy('robots.txt', 'app/robots.txt');
