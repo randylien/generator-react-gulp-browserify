@@ -11,6 +11,7 @@ gulp.task('styles', function () {
     return gulp.src('app/styles/main.scss')
         .pipe($.rubySass({
             style: 'expanded',
+            precision: 10,
             loadPath: ['app/bower_components']
         }))
         .pipe($.autoprefixer('last 1 version'))
@@ -24,7 +25,10 @@ gulp.task('styles', function () {
 <% if (includeCoffeeScript) { %>
 // CoffeeScript
 gulp.task('coffee', function () {
-    return gulp.src('app/scripts/**/*.coffee', {base: 'app/scripts'})
+    return gulp.src(
+            ['app/scripts/**/*.coffee', '!app/scripts/**/*.js'],
+            {base: 'app/scripts'}
+        )
         .pipe(
             $.coffee({ bare: true }).on('error', $.util.log)
         )
@@ -39,25 +43,10 @@ gulp.task('scripts', function () {
             insertGlobals: true,
             transform: ['reactify']
         }))
-        .pipe($.jshint('.jshintrc'))
-        .pipe($.jshint.reporter('default'))
         .pipe(gulp.dest('dist/scripts'))
         .pipe($.size())
         .pipe($.connect.reload());
     });
-
-// React precomiler
-// gulp.task('jsx', function () {
-//     return gulp.src('app/scripts/**/*.jsx', {base: 'app/scripts'})
-//         .pipe($.react())
-//         .pipe($.jshint('.jshintrc'))
-//         .pipe($.jshint.reporter('default'))
-//         .pipe(gulp.dest('app/scripts'))
-//         .pipe($.size())
-//         .pipe($.connect.reload());
-//     });
-
-
 
 <% if (includeJade) { %>
 
@@ -158,9 +147,6 @@ gulp.task('watch', ['html', 'bundle', 'connect'], function () {
     // Watch .coffeescript files
     gulp.watch('app/scripts/**/*.coffee', ['coffee', 'scripts']);
 <% } %>
-
-    // Watch .jsx files
-    // gulp.watch('app/scripts/**/*.jsx', ['jsx', 'scripts']);
 
     // Watch .js files
     gulp.watch('app/scripts/**/*.js', ['scripts']);

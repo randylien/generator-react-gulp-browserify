@@ -34,6 +34,14 @@ Finally, initiate the generator:
 $ yo react-gulp-browserify
 ```
 
+### Install Sass
+
+```
+$ gem install sass
+```
+
+If you find your css build results are empty, update your sass gem.
+
 ### Run task
 
 Run watch task and begin to develop your React components.
