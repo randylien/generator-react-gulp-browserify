@@ -30,8 +30,7 @@
     "chalk": "~0.4.0"
   },
   "devDependencies": {
-    "mocha": "*",
-    "react": "^0.10.0"
+    "mocha": "*"
   },
   "peerDependencies": {
     "yo": ">=1.0.0"
