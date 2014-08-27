@@ -92,6 +92,7 @@ var ReactGulpBrowserifyGenerator = yeoman.generators.Base.extend({
         this.copy('ui/Timer.js', 'app/scripts/ui/Timer.js');
         this.copy('favicon.ico', 'app/favicon.ico');
         this.copy('bowerrc', '.bowerrc');
+        this.copy('gitignore', '.gitignore');        
         this.copy('robots.txt', 'app/robots.txt');
 
     },
