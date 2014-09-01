@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 
 var React = window.React = require('react'),
-    Timer = require("./ui/Timer");
+    Timer = require("./ui/Timer"),
     mountNode = document.getElementById("app");
 
 var TodoList = React.createClass({
