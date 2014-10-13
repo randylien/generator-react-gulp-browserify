@@ -1,6 +1,7 @@
 'use strict';
 
 var gulp = require('gulp');
+var del = require('del');
 
 // Load plugins
 var $ = require('gulp-load-plugins')();
