@@ -88,7 +88,7 @@ gulp.task('clean', function () {
 
 
 // Bundle
-gulp.task('bundle', [<% if (includeSass) { %>'styles', <% } %>'scripts', 'bower'], function(){
+gulp.task('bundle', [<% if (includeSass) { %>'styles', <% } %>'scripts'], function(){
     return gulp.src('./app/*.html')
                .pipe($.useref.assets())
                .pipe($.useref.restore())
@@ -110,13 +110,6 @@ gulp.task('connect', $.connect.server({
     port: 9000,
     livereload: true
 }));
-
-// Bower helper
-gulp.task('bower', function() {
-    gulp.src('app/bower_components/**/*.js', {base: 'app/bower_components'})
-        .pipe(gulp.dest('dist/bower_components/'));
-
-});
 
 gulp.task('json', function() {
     gulp.src('app/scripts/json/**/*.json', {base: 'app/scripts'})
