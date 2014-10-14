@@ -3,25 +3,25 @@
   "version": "0.0.0",
   "dependencies": {},
   "devDependencies": {
-    "gulp": "~3.5.0",
-    "gulp-load-plugins": "~0.3.0",
-    "gulp-util": "~2.2.9",
-    "gulp-autoprefixer": "~0.0.6",
-    "gulp-jshint": "~1.4.0",
-    "gulp-imagemin": "~0.1.4",
-    "gulp-clean": "~0.2.4",
-    "gulp-bower": "0.0.3",
-    "gulp-cache": "~0.1.1",
-    "gulp-react": "~0.2.0",
-    "gulp-size": "~0.1.2",<% if (includeSass) { %>
-    "gulp-ruby-sass": "~0.3.0",<% } %>
-    "gulp-connect": "~1.0.0",<% if (includeJade) { %>
-    "gulp-jade": "~0.4.2",<% } %>
-    "gulp-useref": "~0.4.4",<% if (includeCoffeeScript) { %>
-    "gulp-coffee": "~1.4.1",<% } %>
-    "gulp-browserify": "~0.4.6",
-    "reactify": "~0.10.0",
-    "react": "^0.10.0"
+    "del": "~0.1.3",
+    "gulp": "~3.8.8",
+    "gulp-autoprefixer": "~1.0.1",
+    "gulp-bower": "0.0.6",
+    "gulp-browserify": "~0.5.0",
+    "gulp-cache": "~0.2.4",<% if (includeCoffeeScript) { %>
+    "gulp-coffee": "~2.2.0",<% } %>
+    "gulp-imagemin": "~1.0.1",<% if (includeJade) { %>
+    "gulp-jade": "~0.8.0",<% } %>
+    "gulp-jshint": "~1.8.5",
+    "gulp-load-plugins": "~0.7.0",
+    "gulp-react": "~1.0.2",<% if (includeSass) { %>
+    "gulp-ruby-sass": "~0.7.1",<% } %>
+    "gulp-size": "~1.1.0",
+    "gulp-useref": "~0.4.4",
+    "gulp-util": "~3.0.1",
+    "gulp-webserver": "^0.8.3",
+    "react": "^0.11.2",
+    "reactify": "~0.14.0"
   },
   "engines": {
     "node": ">=0.10.0"

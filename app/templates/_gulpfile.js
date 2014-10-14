@@ -1,6 +1,7 @@
 'use strict';
 
 var gulp = require('gulp');
+var del = require('del');
 
 // Load plugins
 var $ = require('gulp-load-plugins')();
@@ -16,8 +17,7 @@ gulp.task('styles', function () {
         }))
         .pipe($.autoprefixer('last 1 version'))
         .pipe(gulp.dest('dist/styles'))
-        .pipe($.size())
-        .pipe($.connect.reload());
+        .pipe($.size());
 });
 <% } %>
 
@@ -44,8 +44,7 @@ gulp.task('scripts', function () {
             transform: ['reactify']
         }))
         .pipe(gulp.dest('dist/scripts'))
-        .pipe($.size())
-        .pipe($.connect.reload());
+        .pipe($.size());
     });
 
 <% if (includeJade) { %>
@@ -53,8 +52,7 @@ gulp.task('scripts', function () {
 gulp.task('jade', function () {
     return gulp.src('app/template/*.jade')
         .pipe($.jade({ pretty: true }))
-        .pipe(gulp.dest('dist'))
-        .pipe($.connect.reload());
+        .pipe(gulp.dest('dist'));
 })
 
 <% } %>
@@ -64,8 +62,7 @@ gulp.task('html', function () {
     return gulp.src('app/*.html')
         .pipe($.useref())
         .pipe(gulp.dest('dist'))
-        .pipe($.size())
-        .pipe($.connect.reload());
+        .pipe($.size());
 });
 
 // Images
@@ -77,13 +74,12 @@ gulp.task('images', function () {
             interlaced: true
         })))
         .pipe(gulp.dest('dist/images'))
-        .pipe($.size())
-        .pipe($.connect.reload());
+        .pipe($.size());
 });
 
 // Clean
-gulp.task('clean', function () {
-    return gulp.src(['dist/styles', 'dist/scripts', 'dist/images'], {read: false}).pipe($.clean());
+gulp.task('clean', function (cb) {
+    del(['dist/styles', 'dist/scripts', 'dist/images'], cb);
 });
 
 
@@ -104,12 +100,14 @@ gulp.task('default', ['clean'], function () {
     gulp.start('build');
 });
 
-// Connect
-gulp.task('connect', $.connect.server({
-    root: ['dist'],
-    port: 9000,
-    livereload: true
-}));
+// Webserver
+gulp.task('serve', function () {
+    gulp.src('dist')
+        .pipe($.webserver({
+            livereload: true,
+            port: 9000
+        }));
+});
 
 // Bower helper
 gulp.task('bower', function() {
@@ -125,7 +123,7 @@ gulp.task('json', function() {
 
 
 // Watch
-gulp.task('watch', ['html', 'bundle', 'connect'], function () {
+gulp.task('watch', ['html', 'bundle', 'serve'], function () {
 
     // Watch .json files
     gulp.watch('app/scripts/**/*.json', ['json']);
