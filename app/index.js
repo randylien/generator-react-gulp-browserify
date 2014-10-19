@@ -53,6 +53,10 @@ var ReactGulpBrowserifyGenerator = yeoman.generators.Base.extend({
                 name: 'CoffeeScript for JavaScript',
                 value: 'includeCoffeeScript',
                 checked: true
+            }, {
+                name: 'Jest for unit tests',
+                value: 'includeJest',
+                checked: true
             }]
         }];
 
@@ -70,6 +74,7 @@ var ReactGulpBrowserifyGenerator = yeoman.generators.Base.extend({
             this.includeModernizr = hasFeature('includeModernizr');
             this.includeJade = hasFeature('includeJade');
             this.includeCoffeeScript = hasFeature('includeCoffeeScript');
+            this.includeJest = hasFeature('includeJest');
 
             done();
         }.bind(this));
@@ -79,6 +84,9 @@ var ReactGulpBrowserifyGenerator = yeoman.generators.Base.extend({
         this.mkdir('app');
         this.mkdir('app/scripts');
         this.mkdir('app/scripts/ui');
+        if (this.includeJest) {
+            this.mkdir('app/scripts/ui/__tests__');
+        }
         this.mkdir('app/styles');
         this.mkdir('app/images');
 
@@ -90,9 +98,12 @@ var ReactGulpBrowserifyGenerator = yeoman.generators.Base.extend({
         this.copy('index.html', 'app/index.html');
         this.copy('app.js', 'app/scripts/app.js');
         this.copy('ui/Timer.js', 'app/scripts/ui/Timer.js');
+        if (this.includeJest) {
+            this.copy('ui/__tests__/Timer-test.js', 'app/scripts/ui/__tests__/Timer-test.js');
+        }
         this.copy('favicon.ico', 'app/favicon.ico');
         this.copy('bowerrc', '.bowerrc');
-        this.copy('gitignore', '.gitignore');        
+        this.copy('gitignore', '.gitignore');
         this.copy('robots.txt', 'app/robots.txt');
 
     },

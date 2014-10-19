@@ -2,6 +2,9 @@
 
 var gulp = require('gulp');
 var del = require('del');
+<% if (includeJest) { %>
+var path = require('path');
+<% } %>
 
 // Load plugins
 var $ = require('gulp-load-plugins')();
@@ -77,6 +80,19 @@ gulp.task('images', function () {
         .pipe($.size());
 });
 
+<% if (includeJest) { %>
+
+gulp.task('jest', function () {
+    var nodeModules = path.resolve('./node_modules');
+    return gulp.src('app/scripts/**/__tests__')
+        .pipe($.jest({
+            scriptPreprocessor: nodeModules + '/gulp-jest/preprocessor.js',
+            unmockedModulePathPatterns: [nodeModules + '/react']
+        }));
+});
+
+<% } %>
+
 // Clean
 gulp.task('clean', function (cb) {
     del(['dist/styles', 'dist/scripts', 'dist/images'], cb);
@@ -96,9 +112,7 @@ gulp.task('bundle', [<% if (includeSass) { %>'styles', <% } %>'scripts', 'bower'
 gulp.task('build', ['html', 'bundle', 'images']);
 
 // Default task
-gulp.task('default', ['clean'], function () {
-    gulp.start('build');
-});
+gulp.task('default', ['clean', 'build'<% if (includeJest) { %>, 'jest' <% } %>]);
 
 // Webserver
 gulp.task('serve', function () {
@@ -143,11 +157,11 @@ gulp.task('watch', ['html', 'bundle', 'serve'], function () {
 
 <% if (includeCoffeeScript) { %>
     // Watch .coffeescript files
-    gulp.watch('app/scripts/**/*.coffee', ['coffee', 'scripts']);
+    gulp.watch('app/scripts/**/*.coffee', ['coffee', 'scripts'<% if (includeJest) { %>, 'jest' <% } %>]);
 <% } %>
 
     // Watch .js files
-    gulp.watch('app/scripts/**/*.js', ['scripts']);
+    gulp.watch('app/scripts/**/*.js', ['scripts'<% if (includeJest) { %>, 'jest' <% } %>]);
 
     // Watch image files
     gulp.watch('app/images/**/*', ['images']);
