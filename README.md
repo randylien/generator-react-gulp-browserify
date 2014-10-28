@@ -11,6 +11,7 @@
 * bootstrap-sass-official - twitter bootstrap official Sass version
 * jade - html template
 * livereload
+* Jest support!
 
 ## Getting Started
 
