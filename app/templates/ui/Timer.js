@@ -1,4 +1,5 @@
 /** @jsx React.DOM */
+var React = require('react');
 
 var Timer = React.createClass({
   getInitialState: function() {
