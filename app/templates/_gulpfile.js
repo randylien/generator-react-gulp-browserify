@@ -48,7 +48,6 @@ gulp.task('scripts', function () {
             .bundle()
             .pipe(source('app.js'))
             .pipe(gulp.dest('dist/scripts'))
-            .pipe($.connect.reload());
 });
 
 <% if (includeJade) { %>
