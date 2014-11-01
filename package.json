@@ -1,10 +1,14 @@
 {
   "name": "generator-react-gulp-browserify",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A Yeoman Generator for facebook's React framework. It includes gulp, browserify, livereload and famous official Twitter bootstrap Sass version.",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "randylien/generator-react-gulp-browserify",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/randylien/generator-react-gulp-browserify.git"
+  },
+  "bugs": "https://github.com/randylien/generator-react-gulp-browserify/issues",
   "author": {
     "name": "Randy Lien",
     "email": "randylien+github@gmail.com",
