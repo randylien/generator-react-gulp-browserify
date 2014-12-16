@@ -9,7 +9,7 @@
     "gulp-bower": "0.0.6",
     "gulp-cache": "~0.2.4",<% if (includeCoffeeScript) { %>
     "coffeeify": "latest",<% } %>
-    "gulp-imagemin": "~1.0.1",<% if (includeJade) { %>
+    "gulp-imagemin": "latest",<% if (includeJade) { %>
     "gulp-jade": "~0.8.0",<% } %><% if (includeJest) { %>
     "gulp-jest": "~0.2.2",<% } %>
     "gulp-jshint": "~1.8.5",
