@@ -12,7 +12,11 @@ var $ = require('gulp-load-plugins')();
 var browserify = require('browserify');
 var watchify = require('watchify');
 var source = require('vinyl-source-stream'),
+    <% if (includeCoffeeScript) { %>
+    sourceFile = './app/scripts/app.coffee',
+    <% } else { %>
     sourceFile = './app/scripts/app.js',
+    <% } %>
     destFolder = './dist/scripts',
     destFileName = 'app.js';
 
