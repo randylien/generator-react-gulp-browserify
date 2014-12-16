@@ -8,7 +8,7 @@
     "gulp-autoprefixer": "~1.0.1",
     "gulp-bower": "0.0.6",
     "gulp-cache": "~0.2.4",<% if (includeCoffeeScript) { %>
-    "gulp-coffee": "~2.2.0",<% } %>
+    "coffeeify": "latest",<% } %>
     "gulp-imagemin": "~1.0.1",<% if (includeJade) { %>
     "gulp-jade": "~0.8.0",<% } %><% if (includeJest) { %>
     "gulp-jest": "~0.2.2",<% } %>
@@ -19,10 +19,11 @@
     "gulp-size": "~1.1.0",
     "gulp-useref": "~0.4.4",
     "gulp-util": "~3.0.1",
-    "gulp-webserver": "^0.8.3",<% if (includeJest) { %>
+    "gulp-webserver": "latest",<% if (includeJest) { %>
     "jest": "~0.1.37",<% } %>
     "react": ">=0.12.0",
     "reactify": ">0.15.0",
+    "watchify": "~2.1",
     "browserify-shim": "^3.8.0",
     "vinyl-source-stream": "^1.0.0"
   },
@@ -31,7 +32,8 @@
   },
   "browserify": {
       "transform": [
-          "browserify-shim",
+          "browserify-shim",<% if (includeCoffeeScript) { %>
+          "coffeeify",<% } %>
           [
             "reactify",
             {
