@@ -2,6 +2,13 @@
 
 > [Yeoman](http://yeoman.io) generator for facebook's React framework - Integrate with gulp and browserify.
 
+## What's new?
+
+* Add watchify support
+* Use browserify extension instead of gulp extension
+* Autorun `bower install` & `npm install` by default
+
+
 ## What's inside?
 
 * gulp
@@ -11,6 +18,7 @@
 * bootstrap-sass-official - twitter bootstrap official Sass version
 * jade - html template
 * livereload
+* watchify support!
 * Jest support!
 
 ## Getting Started
