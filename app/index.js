@@ -11,7 +11,7 @@ var ReactGulpBrowserifyGenerator = yeoman.generators.Base.extend({
 
         this.on('end', function () {
             if (!this.options['skip-install']) {
-                this.npmInstall();
+                this.installDependencies();
             }
         });
     },
@@ -96,8 +96,15 @@ var ReactGulpBrowserifyGenerator = yeoman.generators.Base.extend({
         this.template('main.scss', 'app/styles/main.scss');
 
         this.copy('index.html', 'app/index.html');
-        this.copy('app.js', 'app/scripts/app.js');
-        this.copy('ui/Timer.js', 'app/scripts/ui/Timer.js');
+
+        if (this.includeCoffeeScript) {
+            this.copy('app.coffee', 'app/scripts/app.coffee');
+            this.copy('ui/Timer.coffee', 'app/scripts/ui/Timer.coffee');
+        } else {
+            this.copy('app.js', 'app/scripts/app.js');
+            this.copy('ui/Timer.js', 'app/scripts/ui/Timer.js');
+        }
+
         if (this.includeJest) {
             this.copy('ui/__tests__/Timer-test.js', 'app/scripts/ui/__tests__/Timer-test.js');
         }
