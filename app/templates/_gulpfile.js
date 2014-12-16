@@ -10,7 +10,11 @@ var path = require('path');
 // Load plugins
 var $ = require('gulp-load-plugins')();
 var browserify = require('browserify');
-var source = require('vinyl-source-stream');
+var watchify = require('watchify');
+var source = require('vinyl-source-stream'),
+    sourceFile = './app/scripts/app.js',
+    destFolder = './dist/scripts',
+    destFileName = 'app.js';
 
 <% if (includeSass) { %>
 // Styles
@@ -27,28 +31,31 @@ gulp.task('styles', function () {
 });
 <% } %>
 
-
-<% if (includeCoffeeScript) { %>
-// CoffeeScript
-gulp.task('coffee', function () {
-    return gulp.src(
-            ['app/scripts/**/*.coffee', '!app/scripts/**/*.js'],
-            {base: 'app/scripts'}
-        )
-        .pipe(
-            $.coffee({ bare: true }).on('error', $.util.log)
-        )
-        .pipe(gulp.dest('app/scripts'));
-});
-<% } %>
-
 // Scripts
 gulp.task('scripts', function () {
-    return browserify('./app/scripts/app.js')
-            .bundle()
-            .pipe(source('app.js'))
-            .pipe(gulp.dest('dist/scripts'))
+    var bundler = watchify(browserify({
+        entries: [sourceFile],
+        insertGlobals: true,
+        cache: {},
+        packageCache: {},
+        fullPaths: true
+    }));
+
+    bundler.on('update', rebundle);
+
+    function rebundle() {
+        return bundler.bundle()
+            // log errors if they happen
+            .on('error', $.util.log.bind($.util, 'Browserify Error'))
+            .pipe(source(destFileName))
+            .pipe(gulp.dest(destFolder));
+    }
+
+    return rebundle();
+
 });
+
+
 
 <% if (includeJade) { %>
 
@@ -116,7 +123,7 @@ gulp.task('default', ['clean', 'build'<% if (includeJest) { %>, 'jest' <% } %>])
 
 // Webserver
 gulp.task('serve', function () {
-    gulp.src('dist')
+    gulp.src('./dist')
         .pipe($.webserver({
             livereload: true,
             port: 9000
@@ -154,14 +161,6 @@ gulp.task('watch', ['html', 'bundle', 'serve'], function () {
     // Watch .jade files
     gulp.watch('app/template/**/*.jade', ['jade', 'html']);
 <% } %>
-
-<% if (includeCoffeeScript) { %>
-    // Watch .coffeescript files
-    gulp.watch('app/scripts/**/*.coffee', ['coffee', 'scripts'<% if (includeJest) { %>, 'jest' <% } %>]);
-<% } %>
-
-    // Watch .js files
-    gulp.watch('app/scripts/**/*.js', ['scripts'<% if (includeJest) { %>, 'jest' <% } %>]);
 
     // Watch image files
     gulp.watch('app/images/**/*', ['images']);
