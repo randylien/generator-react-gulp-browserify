@@ -2,7 +2,7 @@
 @jsx React.DOM
 ###
 React = window.React = require("react")
-Timer = require("./ui/test.coffee")
+Timer = require("./ui/Timer.coffee")
 mountNode = document.getElementById("app")
 TodoList = React.createClass(
   displayName: "TodoList"
