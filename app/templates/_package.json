@@ -13,16 +13,15 @@
     "gulp-jade": "~0.8.0",<% } %><% if (includeJest) { %>
     "gulp-jest": "~0.2.2",<% } %>
     "gulp-jshint": "~1.8.5",
-    "gulp-load-plugins": "~0.7.0",
-    "gulp-react": "~1.0.2",<% if (includeSass) { %>
+    "gulp-load-plugins": "~0.7.0",<% if (includeSass) { %>
     "gulp-ruby-sass": "~0.7.1",<% } %>
     "gulp-size": "~1.1.0",
     "gulp-useref": "~0.4.4",
     "gulp-util": "~3.0.1",
     "gulp-webserver": "latest",<% if (includeJest) { %>
-    "jest": "~0.1.37",<% } %>
-    "react": ">=0.12.0",
-    "reactify": ">0.15.0",
+    "jest": "latest",<% } %>
+    "react": "latest",
+    "reactify": "latest",
     "watchify": "~2.1",
     "browserify-shim": "^3.8.0",
     "vinyl-source-stream": "^1.0.0"
