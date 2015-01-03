@@ -106,7 +106,7 @@ gulp.task('jest', function () {
 
 // Clean
 gulp.task('clean', function (cb) {
-    del(['dist/styles', 'dist/scripts', 'dist/images'], cb);
+    cb(del.sync(['dist/styles', 'dist/scripts', 'dist/images']));
 });
 
 
