@@ -25,7 +25,8 @@ describe('react-gulp-browserify generator', function () {
         'package.json',
         'gulpfile.js',
         'app/index.html',
-        'app/scripts/app.js'
+        'app/scripts/ui/Timer.coffee',
+        'app/scripts/app.coffee'
     ];
 
 
