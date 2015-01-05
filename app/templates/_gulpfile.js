@@ -115,17 +115,11 @@ gulp.task('bundle', [<% if (includeSass) { %>'styles', <% } %>'scripts', 'bower'
     var useref = $.useref;
     var assets = useref.assets();
     return gulp.src('./app/*.html')
-               .pipe(useref.assets())
-               .pipe(useref.restore())
+               .pipe(assets)
+               .pipe(assets.restore())
                .pipe(useref())
                .pipe(gulp.dest('dist'));
 });
-
-// Build
-gulp.task('build', ['html', 'bundle', 'images']);
-
-// Default task
-gulp.task('default', ['clean', 'build'<% if (includeJest) { %>, 'jest' <% } %>]);
 
 // Webserver
 gulp.task('serve', function () {
@@ -177,3 +171,9 @@ gulp.task('watch', ['html', 'bundle', 'serve'], function () {
     // Watch image files
     gulp.watch('app/images/**/*', ['images']);
 });
+
+// Build
+gulp.task('build', ['html', 'bundle', 'images', 'extras']);
+
+// Default task
+gulp.task('default', ['clean', 'build'<% if (includeJest) { %>, 'jest' <% } %>]);
