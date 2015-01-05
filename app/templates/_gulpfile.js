@@ -112,10 +112,12 @@ gulp.task('clean', function (cb) {
 
 // Bundle
 gulp.task('bundle', [<% if (includeSass) { %>'styles', <% } %>'scripts', 'bower'], function(){
+    var useref = $.useref;
+    var assets = useref.assets();
     return gulp.src('./app/*.html')
-               .pipe($.useref.assets())
-               .pipe($.useref.restore())
-               .pipe($.useref())
+               .pipe(useref.assets())
+               .pipe(useref.restore())
+               .pipe(useref())
                .pipe(gulp.dest('dist'));
 });
 
@@ -146,6 +148,12 @@ gulp.task('json', function() {
         .pipe(gulp.dest('dist/scripts/'));
 });
 
+// Robots.txt and favicon.ico
+gulp.task('extras', function () {
+    return gulp.src(['app/*.txt', 'app/*.ico'])
+        .pipe(gulp.dest('dist/'))
+        .pipe($.size());
+});
 
 // Watch
 gulp.task('watch', ['html', 'bundle', 'serve'], function () {
