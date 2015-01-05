@@ -112,12 +112,10 @@ gulp.task('clean', function (cb) {
 
 // Bundle
 gulp.task('bundle', [<% if (includeSass) { %>'styles', <% } %>'scripts', 'bower'], function(){
-    var useref = $.useref;
-    var assets = useref.assets();
     return gulp.src('./app/*.html')
-               .pipe(assets)
-               .pipe(assets.restore())
-               .pipe(useref())
+               .pipe($.useref.assets())
+               .pipe($.useref.restore())
+               .pipe($.useref())
                .pipe(gulp.dest('dist'));
 });
 
