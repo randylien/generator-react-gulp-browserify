@@ -63,7 +63,7 @@ var ReactGulpBrowserifyGenerator = yeoman.generators.Base.extend({
         this.prompt(prompts, function (answers) {
             var features = answers.features;
 
-            this.projectName = answers.project;
+            this.projectName = answers.project || 'myApp';
 
             function hasFeature(feat) { return features.indexOf(feat) !== -1; }
 
