@@ -14,6 +14,8 @@
 Bundled:
 
 * Gulp
+* Bower
+* jQuery
 * Browserify
 * Reactify - Help to transform JSX
 * watchify support!
