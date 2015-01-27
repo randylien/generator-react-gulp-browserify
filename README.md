@@ -4,56 +4,42 @@
 
 ## What's new?
 
-* Add watchify support
-* Use browserify extension instead of gulp extension
+* Added watchify support
+* We use browserify extension instead of gulp extension
 * Autorun `bower install` & `npm install` by default
 
 
 ## What's inside?
 
-* gulp
-* browserify
-* reactify - Help to transform JSX
-* coffeescript
-* bootstrap-sass-official - twitter bootstrap official Sass version
-* jade - html template
-* livereload
+Bundled:
+
+* Gulp
+* Browserify
+* Reactify - Help to transform JSX
 * watchify support!
-* Jest support!
+* livereload
+
+Optional:
+
+* Sass with Compass
+* Bootstrap - Twitter Bootstrap's official Sass version
+* Modernizr
+* Jade for HTML templates
+* CoffeeScript for JavaScript
+* Jest for unit tests
 
 ## Getting Started
 
-### Install Yeoman
-
 ```
-$ npm install -g yo
-```
-
-### Install and use Generators
-
-To install generator-react-gulp-browserify from npm, run:
-
-```
-$ npm install -g generator-react-gulp-browserify
+$ npm install -g yo                                # Install Yeoman (if you don't have it yet)...
+$ npm install -g generator-react-gulp-browserify   # ...then install this generator...
+$ yo react-gulp-browserify                         # ...and run it.
 ```
 
-Finally, initiate the generator:
-
-```
-$ yo react-gulp-browserify
-```
-
-### Install Sass
-
-```
-$ gem install sass
-```
-
+If you chosen to use sass, you'll need to install it with `gem install sass`.
 If you find your css build results are empty, update your sass gem.
 
-### Run task
-
-Run watch task and begin to develop your React components.
+Now, when everything is ready, run watch task and begin to develop your React components.
 
 ```
 $ gulp watch
