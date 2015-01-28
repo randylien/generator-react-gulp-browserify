@@ -22,7 +22,6 @@
     "jest": "latest",<% } %>
     "react": "latest",
     "reactify": "latest",
-    "watchify": "~2.1",
     "browserify-shim": "^3.8.0",
     "vinyl-source-stream": "^1.0.0"
   },
