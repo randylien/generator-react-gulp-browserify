@@ -10,7 +10,6 @@ var path = require('path');
 // Load plugins
 var $ = require('gulp-load-plugins')();
 var browserify = require('browserify');
-var watchify = require('watchify');
 var source = require('vinyl-source-stream'),
     <% if (includeCoffeeScript) { %>
     sourceFile = './app/scripts/app.coffee',
@@ -37,26 +36,17 @@ gulp.task('styles', function () {
 
 // Scripts
 gulp.task('scripts', function () {
-    var bundler = watchify(browserify({
+    return browserify({
         entries: [sourceFile],
         insertGlobals: true,
         cache: {},
         packageCache: {},
         fullPaths: true
-    }));
-
-    bundler.on('update', rebundle);
-
-    function rebundle() {
-        return bundler.bundle()
-            // log errors if they happen
-            .on('error', $.util.log.bind($.util, 'Browserify Error'))
-            .pipe(source(destFileName))
-            .pipe(gulp.dest(destFolder));
-    }
-
-    return rebundle();
-
+    }).bundle()
+    // log errors if they happen
+    .on('error', $.util.log.bind($.util, 'Browserify Error'))
+    .pipe(source(destFileName))
+    .pipe(gulp.dest(destFolder));
 });
 
 
@@ -149,6 +139,13 @@ gulp.task('extras', function () {
 
 // Watch
 gulp.task('watch', ['html', 'bundle', 'serve'], function () {
+    <% if (includeCoffeeScript) { %>
+        // Watch .coffee files
+        gulp.watch('app/scripts/**/*.coffee', ['scripts']);
+    <% } else { %>
+        // Watch .js files
+        gulp.watch('app/scripts/**/*.js', ['scripts']);
+    <% } %>
 
     // Watch .json files
     gulp.watch('app/scripts/**/*.json', ['json']);
