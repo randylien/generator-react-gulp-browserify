@@ -20,20 +20,20 @@ var source = require('vinyl-source-stream'),
     destFolder = './dist/scripts',
     destFileName = 'app.js';
 
-<% if (includeSass) { %>
+var browserSync = require('browser-sync');
+var reload = browserSync.reload;
+
 // Styles
 gulp.task('styles', function () {
-    return gulp.src('app/styles/main.scss')
+    return gulp.src(['app/styles/main.scss', 'app/styles/**/*.css'])
         .pipe($.rubySass({
             style: 'expanded',
             precision: 10,
-            loadPath: ['app/bower_components']
-        }))
+            loadPath: ['app/bower_components']}))
         .pipe($.autoprefixer('last 1 version'))
         .pipe(gulp.dest('dist/styles'))
         .pipe($.size());
 });
-<% } %>
 
 // Scripts
 gulp.task('scripts', function () {
@@ -59,6 +59,12 @@ gulp.task('scripts', function () {
 
 });
 
+gulp.task('buildScripts', function() {
+    return browserify(sourceFile)
+            .bundle()
+            .pipe(source(destFileName))
+            .pipe(gulp.dest('dist/scripts'));
+});
 
 
 <% if (includeJade) { %>
@@ -111,7 +117,7 @@ gulp.task('clean', function (cb) {
 
 
 // Bundle
-gulp.task('bundle', [<% if (includeSass) { %>'styles', <% } %>'scripts', 'bower'], function(){
+gulp.task('bundle', ['styles', 'scripts', 'bower'], function(){
     return gulp.src('./app/*.html')
                .pipe($.useref.assets())
                .pipe($.useref.restore())
@@ -119,13 +125,12 @@ gulp.task('bundle', [<% if (includeSass) { %>'styles', <% } %>'scripts', 'bower'
                .pipe(gulp.dest('dist'));
 });
 
-// Webserver
-gulp.task('serve', function () {
-    gulp.src('./dist')
-        .pipe($.webserver({
-            livereload: true,
-            port: 9000
-        }));
+gulp.task('buildBundle', ['styles', 'buildScripts', 'bower'], function(){
+    return gulp.src('./app/*.html')
+               .pipe($.useref.assets())
+               .pipe($.useref.restore())
+               .pipe($.useref())
+               .pipe(gulp.dest('dist'));
 });
 
 // Bower helper
@@ -148,7 +153,19 @@ gulp.task('extras', function () {
 });
 
 // Watch
-gulp.task('watch', ['html', 'bundle', 'serve'], function () {
+gulp.task('watch', ['html', 'bundle'], function () {
+
+    browserSync({
+        notify: false,
+        logPrefix: 'BS',
+        // Run as an https by uncommenting 'https: true'
+        // Note: this uses an unsigned certificate which on first access
+        //       will present a certificate warning in the browser.
+        // https: true,
+        server: ['dist', 'app']
+    });
+
+    gulp.watch('app/scripts/**/*.js', ['scripts', reload]);
 
     // Watch .json files
     gulp.watch('app/scripts/**/*.json', ['json']);
@@ -156,22 +173,24 @@ gulp.task('watch', ['html', 'bundle', 'serve'], function () {
     // Watch .html files
     gulp.watch('app/*.html', ['html']);
 
-    <% if (includeSass) { %>
-    // Watch .scss files
-    gulp.watch('app/styles/**/*.scss', ['styles']);
-    <% } %>
+    gulp.watch(['app/styles/**/*.scss', 'app/styles/**/*.css'], ['styles', reload]);
 
 <% if (includeJade) { %>
     // Watch .jade files
-    gulp.watch('app/template/**/*.jade', ['jade', 'html']);
+    gulp.watch('app/template/**/*.jade', ['jade', 'html', reload]);
 <% } %>
 
     // Watch image files
-    gulp.watch('app/images/**/*', ['images']);
+    gulp.watch('app/images/**/*', reload);
 });
 
 // Build
-gulp.task('build', ['html', 'bundle', 'images', 'extras']);
+gulp.task('build', ['html', 'buildBundle', 'images', 'extras'], function() {
+    gulp.src('dist/scripts/app.js')
+        .pipe($.uglify())
+        .pipe($.stripDebug())
+        .pipe(gulp.dest('dist/scripts'));
+});
 
 // Default task
 gulp.task('default', ['clean', 'build'<% if (includeJest) { %>, 'jest' <% } %>]);
