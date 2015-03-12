@@ -112,6 +112,7 @@ var ReactGulpBrowserifyGenerator = yeoman.generators.Base.extend({
         this.copy('bowerrc', '.bowerrc');
         this.copy('gitignore', '.gitignore');
         this.copy('robots.txt', 'app/robots.txt');
+        this.copy('preprocessor.js', 'preprocessor.js');
 
     },
 
