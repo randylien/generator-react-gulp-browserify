@@ -25,6 +25,9 @@
     "reactify": "latest",
     "watchify": "~2.1",
     "browserify-shim": "^3.8.0",
+    "gulp-uglify": "^1.0.2",
+    "strip-debug": "^1.0.1",
+    "gulp-strip-debug": "^1.0.2",
     "vinyl-source-stream": "^1.0.0"
   },
   "engines": {
