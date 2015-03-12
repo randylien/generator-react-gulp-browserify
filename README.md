@@ -19,7 +19,7 @@ Bundled:
 * Browserify
 * Reactify - Help to transform JSX
 * watchify support!
-* livereload
+* livereload (BrowserSync)
 
 Optional:
 
@@ -45,6 +45,11 @@ Now, when everything is ready, run watch task and begin to develop your React co
 
 ```
 $ gulp watch
+```
+
+After development, you can run this task to generate production code.
+```
+$ gulp build
 ```
 
 ## License
