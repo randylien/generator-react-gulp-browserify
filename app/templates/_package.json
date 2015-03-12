@@ -20,7 +20,7 @@
     "gulp-useref": "~0.4.4",
     "gulp-util": "~3.0.1",
     "gulp-webserver": "latest",<% if (includeJest) { %>
-    "jest": "latest",<% } %>
+    "jest-cli": "latest",<% } %>
     "react": "latest",
     "react-tools": "latest",
     "reactify": "latest",
