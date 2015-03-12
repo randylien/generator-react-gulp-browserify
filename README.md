@@ -47,6 +47,12 @@ Now, when everything is ready, run watch task and begin to develop your React co
 $ gulp watch
 ```
 
+How to run test?  
+Currently, I prefer to run test tasks from npm. Please run this commands.
+```
+$ npm test
+```
+
 After development, you can run this task to generate production code.
 ```
 $ gulp build
