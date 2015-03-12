@@ -1,5 +1,3 @@
-/** @jsx React.DOM */
-
 jest.dontMock('../Timer');
 
 describe('Timer', function () {
