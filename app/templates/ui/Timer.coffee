@@ -1,6 +1,3 @@
-###*
-@jsx React.DOM
-###
 React = require("react")
 Timer = React.createClass(
   getInitialState: ->
