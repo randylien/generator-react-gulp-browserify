@@ -97,19 +97,6 @@ gulp.task('images', function () {
         .pipe($.size());
 });
 
-<% if (includeJest) { %>
-
-gulp.task('jest', function () {
-    var nodeModules = path.resolve('./node_modules');
-    return gulp.src('app/scripts/**/__tests__')
-        .pipe($.jest({
-            scriptPreprocessor: nodeModules + '/gulp-jest/preprocessor.js',
-            unmockedModulePathPatterns: [nodeModules + '/react']
-        }));
-});
-
-<% } %>
-
 // Clean
 gulp.task('clean', function (cb) {
     cb(del.sync(['dist/styles', 'dist/scripts', 'dist/images']));
