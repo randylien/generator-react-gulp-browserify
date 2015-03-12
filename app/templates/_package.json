@@ -22,6 +22,7 @@
     "gulp-webserver": "latest",<% if (includeJest) { %>
     "jest": "latest",<% } %>
     "react": "latest",
+    "react-tools": "latest",
     "reactify": "latest",
     "watchify": "~2.1",
     "browserify-shim": "^3.8.0",
@@ -32,6 +33,15 @@
   },
   "engines": {
     "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/preprocessor.js",
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/react"
+    ]
   },
   "browserify": {
       "transform": [
