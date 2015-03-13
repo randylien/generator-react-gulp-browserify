@@ -29,7 +29,8 @@
     "gulp-uglify": "^1.0.2",
     "strip-debug": "^1.0.1",
     "gulp-strip-debug": "^1.0.2",
-    "vinyl-source-stream": "^1.0.0"
+    "vinyl-source-stream": "^1.0.0",
+    "main-bower-files":"~2.6.2"
   },
   "engines": {
     "node": ">=0.10.0"
