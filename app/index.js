@@ -38,6 +38,10 @@ var ReactGulpBrowserifyGenerator = yeoman.generators.Base.extend({
                 value: 'includeSass',
                 checked: true
             }, {
+                name: 'Stylus',
+                value: 'includeStylus',
+                checked: false
+            }, {
                 name: 'Bootstrap',
                 value: 'includeBootstrap',
                 checked: true
@@ -70,6 +74,7 @@ var ReactGulpBrowserifyGenerator = yeoman.generators.Base.extend({
             // manually deal with the response, get back and store the results.
             // we change a bit this way of doing to automatically do this in the self.prompt() method.
             this.includeSass = hasFeature('includeSass');
+            this.includeStylus = hasFeature('includeStylus');
             this.includeBootstrap = hasFeature('includeBootstrap');
             this.includeModernizr = hasFeature('includeModernizr');
             this.includeJade = hasFeature('includeJade');

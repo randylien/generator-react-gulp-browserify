@@ -24,12 +24,22 @@ var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 
 // Styles
-gulp.task('styles', function () {
+gulp.task('styles', ['sass'<% if (includeStylus) { %>, 'stylus'<% } %>]);
+
+gulp.task('sass', function () {
     return gulp.src(['app/styles/main.scss', 'app/styles/**/*.css'])
         .pipe($.rubySass({
             style: 'expanded',
             precision: 10,
             loadPath: ['app/bower_components']}))
+        .pipe($.autoprefixer('last 1 version'))
+        .pipe(gulp.dest('dist/styles'))
+        .pipe($.size());
+});
+
+gulp.task('stylus', function () {
+    return gulp.src(['app/styles/**/*.styl'])
+        .pipe($.stylus())
         .pipe($.autoprefixer('last 1 version'))
         .pipe(gulp.dest('dist/styles'))
         .pipe($.size());

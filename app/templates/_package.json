@@ -13,7 +13,8 @@
     "gulp-jade": "~0.8.0",<% } %><% if (includeJest) { %>
     "gulp-jest": "~0.2.2",<% } %>
     "gulp-jshint": "~1.8.5",
-    "gulp-load-plugins": "~0.7.0",
+    "gulp-load-plugins": "~0.7.0",<% if (includeStylus) { %>
+    "gulp-stylus": "~2.0.1",<% } %>
     "gulp-ruby-sass": "~0.7.1",
     "browser-sync": "latest",
     "gulp-size": "~1.1.0",
