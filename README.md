@@ -38,17 +38,17 @@ $ npm install -g generator-react-gulp-browserify   # ...then install this genera
 $ yo react-gulp-browserify                         # ...and run it.
 ```
 
-If you chosen to use sass, you'll need to install it with `gem install sass`.
+If you chose to use sass, you'll need to install it with `gem install sass`.
 If you find your css build results are empty, update your sass gem.
 
-Now, when everything is ready, run watch task and begin to develop your React components.
+Now, when everything is ready, run the watch task and begin to develop your React components.
 
 ```
 $ gulp watch
 ```
 
 How to run test?  
-Currently, I prefer to run test tasks from npm. Please run this commands.
+Currently, I prefer to run test tasks from npm. Please run this command.
 ```
 $ npm test
 ```
