@@ -27,7 +27,7 @@ var reload = browserSync.reload;
 gulp.task('styles', ['sass'<% if (includeStylus) { %>, 'stylus'<% } %>]);
 
 gulp.task('sass', function () {
-    return gulp.src(['app/styles/main.scss', 'app/styles/**/*.css'])
+    return gulp.src(['app/styles/**/*.scss', 'app/styles/**/*.css'])
         .pipe($.rubySass({
             style: 'expanded',
             precision: 10,
@@ -132,7 +132,7 @@ gulp.task('buildBundle', ['styles', 'buildScripts', 'bower'], function(){
 
 // Bower helper
 gulp.task('bower', function() {
-    gulp.src('app/bower_components/**/*.js', {base: 'app/bower_components'})
+    gulp.src('app/bower_components/**/*(*.js|*.eot|*.svg|*.ttf|*.woff|*.woff2)', {base: 'app/bower_components'})
         .pipe(gulp.dest('dist/bower_components/'));
 
 });
