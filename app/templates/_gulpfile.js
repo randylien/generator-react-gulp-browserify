@@ -27,7 +27,7 @@ var reload = browserSync.reload;
 gulp.task('styles', ['sass'<% if (includeStylus) { %>, 'stylus'<% } %>]);
 
 gulp.task('sass', function () {
-    return gulp.src(['app/styles/main.scss', 'app/styles/**/*.css'])
+    return gulp.src(['app/styles/**/*.scss', 'app/styles/**/*.css'])
         .pipe($.rubySass({
             style: 'expanded',
             precision: 10,
