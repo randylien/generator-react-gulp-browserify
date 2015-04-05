@@ -116,7 +116,7 @@ gulp.task('fonts', function () {
   }).concat('app/fonts/**/*'))
      .pipe(gulp.dest('.tmp/fonts'))
      .pipe(gulp.dest('dist/fonts'));
- });
+});
 
 // Clean
 gulp.task('clean', function (cb) {
@@ -143,7 +143,7 @@ gulp.task('buildBundle', ['styles', 'buildScripts', 'bower'], function(){
 
 // Bower helper
 gulp.task('bower', function() {
-    gulp.src('app/bower_components/**/*(*.js|*.eot|*.svg|*.ttf|*.woff|*.woff2)', {base: 'app/bower_components'})
+    gulp.src('app/bower_components/**/*.js', {base: 'app/bower_components'})
         .pipe(gulp.dest('dist/bower_components/'));
 
 });
