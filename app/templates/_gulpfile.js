@@ -120,9 +120,9 @@ gulp.task('fonts', function () {
 
 // Clean
 gulp.task('clean', function (cb) {
+    $.cache.clearAll();
     cb(del.sync(['dist/styles', 'dist/scripts', 'dist/images']));
 });
-
 
 // Bundle
 gulp.task('bundle', ['styles', 'scripts', 'bower'], function(){
