@@ -45,32 +45,29 @@ gulp.task('stylus', function () {
         .pipe($.size());
 });
 
+
+var bundler = watchify(browserify({
+    entries: [sourceFile],
+    insertGlobals: true,
+    cache: {},
+    packageCache: {},
+    fullPaths: true
+}));
+
+bundler.on('update', rebundle);
+bundler.on('log', $.util.log);
+
+function rebundle() {
+    return bundler.bundle()
+        // log errors if they happen
+        .on('error', $.util.log.bind($.util, 'Browserify Error'))
+        .pipe(source(destFileName))
+        .pipe(gulp.dest(destFolder))
+        .on('end', function () { reload(); });
+}
+
 // Scripts
-gulp.task('scripts', function () {
-    var bundler = watchify(browserify({
-        entries: [sourceFile],
-        insertGlobals: true,
-        cache: {},
-        packageCache: {},
-        fullPaths: true
-    }));
-
-    bundler.on('update', function() {
-        rebundle(bundler)
-    });
-
-    function rebundle(b) {
-        b.bundle()
-            // log errors if they happen
-            .on('error', $.util.log.bind($.util, 'Browserify Error'))
-            .pipe(source(destFileName))
-            .pipe(gulp.dest(destFolder))
-            .on('end', function () { reload(); });
-    }
-
-    return rebundle();
-
-});
+gulp.task('scripts', rebundle);
 
 gulp.task('buildScripts', function() {
     return browserify(sourceFile)
@@ -175,8 +172,6 @@ gulp.task('watch', ['html', 'bundle'], function () {
         // https: true,
         server: ['dist', 'app']
     });
-
-    gulp.watch('app/scripts/**/*.js', ['scripts', reload]);
 
     // Watch .json files
     gulp.watch('app/scripts/**/*.json', ['json']);
