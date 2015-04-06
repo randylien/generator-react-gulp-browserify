@@ -167,7 +167,7 @@ gulp.task('extras', function() {
 });
 
 // Watch
-gulp.task('watch', ['html', 'font', 'bundle'], function() {
+gulp.task('watch', ['html', 'fonts', 'bundle'], function() {
 
     browserSync({
         notify: false,
