@@ -18,7 +18,7 @@ Bundled:
 * jQuery
 * Browserify
 * Reactify - Help to transform JSX (consider to use babelify later)
-* watchify support!
+* Watchify support! (Sourcemap also!)
 * livereload (BrowserSync)
 
 Optional:
