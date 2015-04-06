@@ -49,6 +49,7 @@ gulp.task('stylus', function() {
 
 var bundler = watchify(browserify({
     entries: [sourceFile],
+    debug: true,
     insertGlobals: true,
     cache: {},
     packageCache: {},
