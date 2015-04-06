@@ -43,9 +43,9 @@ If you find your css build results are empty, update your sass gem.
 
 ## Output folders 
 
-scripts - /scripts
-styles - /styles
-fonts - /fonts 
+scripts - /scripts  
+styles - /styles  
+fonts - /fonts  
 
 
 Now, when everything is ready, run the watch task and begin to develop your React components.
