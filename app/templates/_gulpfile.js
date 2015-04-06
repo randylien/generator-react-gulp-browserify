@@ -12,11 +12,11 @@ var $ = require('gulp-load-plugins')();
 var browserify = require('browserify');
 var watchify = require('watchify');
 var source = require('vinyl-source-stream'),
-    <% if (includeCoffeeScript) { %>
+<% if (includeCoffeeScript) { %>
     sourceFile = './app/scripts/app.coffee',
-    <% } else { %>
+<% } else { %>
     sourceFile = './app/scripts/app.js',
-    <% } %>
+<% } %>
     destFolder = './dist/scripts',
     destFileName = 'app.js';
 
@@ -24,20 +24,21 @@ var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 
 // Styles
-gulp.task('styles', ['sass'<% if (includeStylus) { %>, 'stylus'<% } %>]);
+gulp.task('styles', ['sass' <% if (includeStylus) { %> , 'stylus' <% } %> ]);
 
-gulp.task('sass', function () {
+gulp.task('sass', function() {
     return gulp.src(['app/styles/**/*.scss', 'app/styles/**/*.css'])
         .pipe($.rubySass({
             style: 'expanded',
             precision: 10,
-            loadPath: ['app/bower_components']}))
+            loadPath: ['app/bower_components']
+        }))
         .pipe($.autoprefixer('last 1 version'))
         .pipe(gulp.dest('dist/styles'))
         .pipe($.size());
 });
 
-gulp.task('stylus', function () {
+gulp.task('stylus', function() {
     return gulp.src(['app/styles/**/*.styl'])
         .pipe($.stylus())
         .pipe($.autoprefixer('last 1 version'))
@@ -63,7 +64,9 @@ function rebundle() {
         .on('error', $.util.log.bind($.util, 'Browserify Error'))
         .pipe(source(destFileName))
         .pipe(gulp.dest(destFolder))
-        .on('end', function () { reload(); });
+        .on('end', function() {
+            reload();
+        });
 }
 
 // Scripts
@@ -71,24 +74,26 @@ gulp.task('scripts', rebundle);
 
 gulp.task('buildScripts', function() {
     return browserify(sourceFile)
-            .bundle()
-            .pipe(source(destFileName))
-            .pipe(gulp.dest('dist/scripts'));
+        .bundle()
+        .pipe(source(destFileName))
+        .pipe(gulp.dest('dist/scripts'));
 });
 
 
 <% if (includeJade) { %>
 
-gulp.task('jade', function () {
-    return gulp.src('app/template/*.jade')
-        .pipe($.jade({ pretty: true }))
-        .pipe(gulp.dest('dist'));
-})
+    gulp.task('jade', function() {
+        return gulp.src('app/template/*.jade')
+            .pipe($.jade({
+                pretty: true
+            }))
+            .pipe(gulp.dest('dist'));
+    })
 
 <% } %>
 
 // HTML
-gulp.task('html', function () {
+gulp.task('html', function() {
     return gulp.src('app/*.html')
         .pipe($.useref())
         .pipe(gulp.dest('dist'))
@@ -96,7 +101,7 @@ gulp.task('html', function () {
 });
 
 // Images
-gulp.task('images', function () {
+gulp.task('images', function() {
     return gulp.src('app/images/**/*')
         .pipe($.cache($.imagemin({
             optimizationLevel: 3,
@@ -108,60 +113,61 @@ gulp.task('images', function () {
 });
 
 // Fonts
-// Fonts
-gulp.task('fonts', function () {
-
-  return gulp.src(require('main-bower-files')({
-    filter: '**/*.{eot,svg,ttf,woff,woff2}'
-  }).concat('app/fonts/**/*'))
-     .pipe(gulp.dest('.tmp/fonts'))
-     .pipe(gulp.dest('dist/fonts'));
+gulp.task('fonts', function() {
+    return gulp.src(require('main-bower-files')({
+            filter: '**/*.{eot,svg,ttf,woff,woff2}'
+        }).concat('app/fonts/**/*'))
+        .pipe(gulp.dest('dist/fonts'));
 });
 
 // Clean
-gulp.task('clean', function (cb) {
+gulp.task('clean', function(cb) {
     $.cache.clearAll();
     cb(del.sync(['dist/styles', 'dist/scripts', 'dist/images']));
 });
 
 // Bundle
-gulp.task('bundle', ['styles', 'scripts', 'bower'], function(){
+gulp.task('bundle', ['styles', 'scripts', 'bower'], function() {
     return gulp.src('./app/*.html')
-               .pipe($.useref.assets())
-               .pipe($.useref.restore())
-               .pipe($.useref())
-               .pipe(gulp.dest('dist'));
+        .pipe($.useref.assets())
+        .pipe($.useref.restore())
+        .pipe($.useref())
+        .pipe(gulp.dest('dist'));
 });
 
-gulp.task('buildBundle', ['styles', 'buildScripts', 'bower'], function(){
+gulp.task('buildBundle', ['styles', 'buildScripts', 'bower'], function() {
     return gulp.src('./app/*.html')
-               .pipe($.useref.assets())
-               .pipe($.useref.restore())
-               .pipe($.useref())
-               .pipe(gulp.dest('dist'));
+        .pipe($.useref.assets())
+        .pipe($.useref.restore())
+        .pipe($.useref())
+        .pipe(gulp.dest('dist'));
 });
 
 // Bower helper
 gulp.task('bower', function() {
-    gulp.src('app/bower_components/**/*.js', {base: 'app/bower_components'})
+    gulp.src('app/bower_components/**/*.js', {
+            base: 'app/bower_components'
+        })
         .pipe(gulp.dest('dist/bower_components/'));
 
 });
 
 gulp.task('json', function() {
-    gulp.src('app/scripts/json/**/*.json', {base: 'app/scripts'})
+    gulp.src('app/scripts/json/**/*.json', {
+            base: 'app/scripts'
+        })
         .pipe(gulp.dest('dist/scripts/'));
 });
 
 // Robots.txt and favicon.ico
-gulp.task('extras', function () {
+gulp.task('extras', function() {
     return gulp.src(['app/*.txt', 'app/*.ico'])
         .pipe(gulp.dest('dist/'))
         .pipe($.size());
 });
 
 // Watch
-gulp.task('watch', ['html', 'bundle'], function () {
+gulp.task('watch', ['html', 'font', 'bundle'], function() {
 
     browserSync({
         notify: false,
@@ -181,17 +187,17 @@ gulp.task('watch', ['html', 'bundle'], function () {
 
     gulp.watch(['app/styles/**/*.scss', 'app/styles/**/*.css'], ['styles', reload]);
 
-<% if (includeJade) { %>
-    // Watch .jade files
-    gulp.watch('app/template/**/*.jade', ['jade', 'html', reload]);
-<% } %>
+    <% if (includeJade) { %>
+        // Watch .jade files
+        gulp.watch('app/template/**/*.jade', ['jade', 'html', reload]);
+    <% } %>
 
     // Watch image files
     gulp.watch('app/images/**/*', reload);
 });
 
 // Build
-gulp.task('build', ['html','buildBundle', 'images','fonts', 'extras'], function() {
+gulp.task('build', ['html', 'buildBundle', 'images', 'fonts', 'extras'], function() {
     gulp.src('dist/scripts/app.js')
         .pipe($.uglify())
         .pipe($.stripDebug())
@@ -199,4 +205,4 @@ gulp.task('build', ['html','buildBundle', 'images','fonts', 'extras'], function(
 });
 
 // Default task
-gulp.task('default', ['clean', 'build'<% if (includeJest) { %>, 'jest' <% } %>]);
+gulp.task('default', ['clean', 'build' <% if (includeJest) { %> , 'jest' <% } %> ]);
