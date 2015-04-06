@@ -1,6 +1,6 @@
 # generator-react-gulp-browserify [![Build Status](https://secure.travis-ci.org/randylien/generator-react-gulp-browserify.png?branch=master)](https://travis-ci.org/randylien/generator-react-gulp-browserify)
 
-> [Yeoman](http://yeoman.io) generator for facebook's React framework - Integrate with gulp and browserify.
+> [Yeoman](http://yeoman.io) generator for facebook's React library - Integrate with gulp and browserify.
 
 ## What's new?
 
@@ -26,7 +26,7 @@ Optional:
 * Sass with Compass
 * Bootstrap - Twitter Bootstrap's official Sass version
 * Modernizr
-* Jade for HTML templates
+* Jade for HTML templates (I think jade is no longer necessary if we create UI with JavaScript)
 * CoffeeScript for JavaScript
 * Jest for unit tests
 
