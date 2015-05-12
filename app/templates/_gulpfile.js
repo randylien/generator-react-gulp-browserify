@@ -24,7 +24,14 @@ var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 
 // Styles
-gulp.task('styles', ['sass' <% if (includeStylus) { %> , 'stylus' <% } %> ]);
+gulp.task('styles', ['sass', 'moveCss' <% if (includeStylus) { %> , 'stylus' <% } %> ]);
+
+gulp.task('moveCss',['clean'], function(){
+  // the base option sets the relative root for the set of files,
+  // preserving the folder structure
+  gulp.src(['./app/styles/**/*.css'], { base: './app/styles/' })
+  .pipe(gulp.dest('dist/styles'));
+});
 
 gulp.task('sass', function() {
     return gulp.src(['app/styles/**/*.scss', 'app/styles/**/*.css'])
