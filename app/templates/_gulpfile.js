@@ -143,13 +143,22 @@ gulp.task('bundle', ['styles', 'scripts', 'bower'], function() {
         .pipe(gulp.dest('dist'));
 });
 
-gulp.task('buildBundle', ['styles', 'buildScripts', 'bower'], function() {
+gulp.task('buildBundle', ['styles', 'buildScripts', 'moveLibraries', 'bower'], function() {
     return gulp.src('./app/*.html')
         .pipe($.useref.assets())
         .pipe($.useref.restore())
         .pipe($.useref())
         .pipe(gulp.dest('dist'));
 });
+
+// Move JS Files and Libraries
+gulp.task('moveLibraries',['clean'], function(){
+  // the base option sets the relative root for the set of files,
+  // preserving the folder structure
+  gulp.src(['./app/scripts/**/*.js'], { base: './app/scripts/' })
+  .pipe(gulp.dest('dist/scripts'));
+});
+
 
 // Bower helper
 gulp.task('bower', function() {
