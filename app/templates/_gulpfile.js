@@ -202,7 +202,7 @@ gulp.task('watch', ['html', 'fonts', 'bundle'], function() {
     // Watch .html files
     gulp.watch('app/*.html', ['html']);
 
-    gulp.watch(['app/styles/**/*.scss', 'app/styles/**/*.css'], ['styles', reload]);
+    gulp.watch(['app/styles/**/*.scss', 'app/styles/**/*.css'], ['styles', 'scripts', reload]);
 
     <% if (includeJade) { %>
         // Watch .jade files
