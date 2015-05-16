@@ -83,13 +83,13 @@ gulp.task('buildScripts', function() {
 
 <% if (includeJade) { %>
 
-    gulp.task('jade', function() {
-        return gulp.src('app/template/*.jade')
-            .pipe($.jade({
-                pretty: true
-            }))
-            .pipe(gulp.dest('dist'));
-    })
+gulp.task('jade', function() {
+    return gulp.src('app/template/*.jade')
+        .pipe($.jade({
+            pretty: true
+        }))
+        .pipe(gulp.dest('dist'));
+});
 
 <% } %>
 
