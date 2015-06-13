@@ -24,7 +24,14 @@ var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 
 // Styles
-gulp.task('styles', ['sass' <% if (includeStylus) { %> , 'stylus' <% } %> ]);
+gulp.task('styles', ['sass', 'moveCss' <% if (includeStylus) { %> , 'stylus' <% } %> ]);
+
+gulp.task('moveCss',['clean'], function(){
+  // the base option sets the relative root for the set of files,
+  // preserving the folder structure
+  gulp.src(['./app/styles/**/*.css'], { base: './app/styles/' })
+  .pipe(gulp.dest('dist/styles'));
+});
 
 gulp.task('sass', function() {
     return gulp.src(['app/styles/**/*.scss', 'app/styles/**/*.css'])
@@ -136,13 +143,22 @@ gulp.task('bundle', ['styles', 'scripts', 'bower'], function() {
         .pipe(gulp.dest('dist'));
 });
 
-gulp.task('buildBundle', ['styles', 'buildScripts', 'bower'], function() {
+gulp.task('buildBundle', ['styles', 'buildScripts', 'moveLibraries', 'bower'], function() {
     return gulp.src('./app/*.html')
         .pipe($.useref.assets())
         .pipe($.useref.restore())
         .pipe($.useref())
         .pipe(gulp.dest('dist'));
 });
+
+// Move JS Files and Libraries
+gulp.task('moveLibraries',['clean'], function(){
+  // the base option sets the relative root for the set of files,
+  // preserving the folder structure
+  gulp.src(['./app/scripts/**/*.js'], { base: './app/scripts/' })
+  .pipe(gulp.dest('dist/scripts'));
+});
+
 
 // Bower helper
 gulp.task('bower', function() {
@@ -186,7 +202,7 @@ gulp.task('watch', ['html', 'fonts', 'bundle'], function() {
     // Watch .html files
     gulp.watch('app/*.html', ['html']);
 
-    gulp.watch(['app/styles/**/*.scss', 'app/styles/**/*.css'], ['styles', reload]);
+    gulp.watch(['app/styles/**/*.scss', 'app/styles/**/*.css'], ['styles', 'scripts', reload]);
 
     <% if (includeJade) { %>
         // Watch .jade files
