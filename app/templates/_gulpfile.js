@@ -45,6 +45,8 @@ gulp.task('sass', function() {
         .pipe($.size());
 });
 
+<% if (includeStylus) { %>
+
 gulp.task('stylus', function() {
     return gulp.src(['app/styles/**/*.styl'])
         .pipe($.stylus())
@@ -53,6 +55,7 @@ gulp.task('stylus', function() {
         .pipe($.size());
 });
 
+<% } %>
 
 var bundler = watchify(browserify({
     entries: [sourceFile],
