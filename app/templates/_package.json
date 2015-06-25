@@ -15,7 +15,7 @@
         "gulp-jshint": "~1.8.5",
         "gulp-load-plugins": "~0.7.0", <% if (includeStylus) { %>
         "gulp-stylus": "~2.0.1", <% } %>
-        "gulp-ruby-sass": "~0.7.1",
+        "gulp-ruby-sass": "~1.0.5",
         "browser-sync": "latest",
         "gulp-size": "~1.1.0",
         "gulp-useref": "~0.4.4",
