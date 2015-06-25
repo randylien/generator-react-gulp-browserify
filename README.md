@@ -30,6 +30,12 @@ Optional:
 * CoffeeScript for JavaScript
 * Jest for unit tests
 
+## Environment requirements
+
+* node.js 0.12 (I suggest to use [nvm](https://github.com/creationix/nvm) to manage your node environment.)
+* Sass >= 3.4 if you want to use Sass
+
+
 ## Getting Started
 
 ```
