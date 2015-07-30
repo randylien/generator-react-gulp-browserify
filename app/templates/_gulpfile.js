@@ -34,12 +34,11 @@ gulp.task('moveCss',['clean'], function(){
 });
 
 gulp.task('sass', function() {
-    return gulp.src(['app/styles/**/*.scss', 'app/styles/**/*.css'])
-        .pipe($.rubySass({
+    return $.rubySass('./app/styles', {
             style: 'expanded',
             precision: 10,
             loadPath: ['app/bower_components']
-        }))
+        })
         .pipe($.autoprefixer('last 1 version'))
         .pipe(gulp.dest('dist/styles'))
         .pipe($.size());
