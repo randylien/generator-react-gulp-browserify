@@ -23,7 +23,7 @@ var ReactGulpBrowserifyGenerator = yeoman.generators.Base.extend({
         console.log(this.yeoman);
 
         // replace it with a short and sweet description of your generator
-        console.log(chalk.magenta('You\'re using the fantastic React generator. We provide you full JavaScript solution with Sass support!'));
+        console.log(chalk.magenta('You\'re using the fantastic React generator. We provide you full JavaScript solution with Sass or Stylus support!'));
 
         var prompts = [{
             name: 'project',
@@ -96,9 +96,22 @@ var ReactGulpBrowserifyGenerator = yeoman.generators.Base.extend({
         this.mkdir('app/images');
 
         this.template('_package.json', 'package.json');
-        this.template('_gulpfile.js', 'gulpfile.js');
         this.template('_bower.json', 'bower.json');
-        this.template('main.scss', 'app/styles/main.scss');
+
+        if (this.includeCoffeeScript) {
+            this.template('_gulpfile-coffee.js', 'gulpfile.js');
+            this.template('_gulpfile.coffee', 'gulpfile.coffee');
+        } else {
+            this.template('_gulpfile.js', 'gulpfile.js');
+        }
+
+        if (this.includeSass) {
+            this.template('main.scss', 'app/styles/main.scss');
+        } else if (this.includeStylus) {
+            this.template('main.styl', 'app/styles/main.styl');
+        } else {
+            this.template('main.css', 'app/styles/main.css');
+        }
 
         this.copy('index.html', 'app/index.html');
 

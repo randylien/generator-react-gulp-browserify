@@ -36,7 +36,8 @@ describe('react-gulp-browserify generator', function () {
             'includeBootstrap',
             'includeModernizr',
             'includeJade',
-            'includeCoffeeScript'
+            'includeCoffeeScript',
+            'includeStylus'
         ]
     });
     this.app.options['skip-install'] = true;
