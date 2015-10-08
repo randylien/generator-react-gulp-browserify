@@ -3,6 +3,7 @@
     "version": "0.0.0",
     "dependencies": {},
     "devDependencies": {
+        "browserify": "latest",
         "del": "~0.1.3",
         "gulp": "~3.8.8",
         "gulp-autoprefixer": "~1.0.1",
@@ -24,6 +25,7 @@
         "gulp-webserver": "latest", <% if (includeJest) { %>
         "jest-cli": "latest", <% } %>
         "react": "latest",
+        "react-dom": "latest",
         "react-tools": "latest",
         "reactify": "latest",
         "watchify": "~2.1",

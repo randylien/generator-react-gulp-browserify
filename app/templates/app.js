@@ -1,5 +1,6 @@
 
 var React = window.React = require('react'),
+    ReactDOM = require("react-dom"),
     Timer = require("./ui/Timer"),
     mountNode = document.getElementById("app");
 
@@ -40,5 +41,5 @@ var TodoApp = React.createClass({
 });
 
 
-React.render(<TodoApp />, mountNode);
+ReactDOM.render(<TodoApp />, mountNode);
 

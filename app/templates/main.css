@@ -1,4 +1,4 @@
-@import "bootstrap-sass-official/assets/stylesheets/bootstrap";
+@import "../bower_components/bootstrap/dist/css/bootstrap.min.css";
 
 .browsehappy {
   margin: 0.2em 0;

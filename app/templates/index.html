@@ -48,8 +48,20 @@
                     <p>Compass is an open-source CSS Authoring Framework that uses Sass.</p>
                     <% } %>
 
-                    <h4>Bootstrap</h4>
+                    <% if (includeStylus) { %><h4>Stylus</h4>
+                    <p>Expressive, dynamic, robust CSS</p>
+                    <% } %>
+
+                    <% if (includeCoffeeScript) { %><h4>CoffeeScript</h4>
+                    <p>A little language that compiles into JavaScript</p>
+                    <% } %>
+
+                    <h4>jQuery</h4>
+                    <p>The Write Less, Do More, JavaScript Library.</p>
+
+                    <% if (includeBootstrap) { %><h4>Bootstrap</h4>
                     <p>Sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.</p>
+                    <% } %>
 
                     <% if (includeModernizr) { %><h4>Modernizr</h4>
                     <p>Modernizr is an open-source JavaScript library that helps you build the next generation of HTML5 and CSS3-powered websites.</p>
@@ -70,14 +82,33 @@
           <ul>
             <li>HTML5 Boilerplate</li>
             <% if (includeSass) { %><li>Sass with Compass</li><% } %>
+            <% if (includeStylus) { %><li>Stylus</li><% } %>
             <% if (includeModernizr) { %><li>Modernizr</li><% } %>
+            <% if (includejQuery) { %><li>jQuery</li><% } %>
+            <% if (includeCoffeeScript) { %><li>CoffeeScript</li><% } %>
           </ul>
         </div>
         <% } %>
 
         <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
-        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <% if (includeBootstrap || includejQuery) { %><script src="bower_components/jquery/dist/jquery.js"></script><% } %>
+        <% if (includeBootstrap && (!includeSass && !includeStylus)) { %>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script><% } %>
+        <% if (includeSass && includeBootstrap) { %><script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js"></script><% } %>
+        <% if (includeStylus && includeBootstrap) { %><script src="bower_components/bootstrap-stylus/js/transition.js"></script>
+        <script src="bower_components/bootstrap-stylus/js/alert.js"></script>
+        <script src="bower_components/bootstrap-stylus/js/button.js"></script>
+        <script src="bower_components/bootstrap-stylus/js/carousel.js"></script>
+        <script src="bower_components/bootstrap-stylus/js/collapse.js"></script>
+        <script src="bower_components/bootstrap-stylus/js/dropdown.js"></script>
+        <script src="bower_components/bootstrap-stylus/js/modal.js"></script>
+        <script src="bower_components/bootstrap-stylus/js/tooltip.js"></script>
+        <script src="bower_components/bootstrap-stylus/js/popover.js"></script>
+        <script src="bower_components/bootstrap-stylus/js/scrollspy.js"></script>
+        <script src="bower_components/bootstrap-stylus/js/tab.js"></script>
+        <script src="bower_components/bootstrap-stylus/js/affix.js"></script>
+        <% } %>
         <!-- endbower -->
         <!-- endbuild -->
         <script src="scripts/app.js"></script>

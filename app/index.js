@@ -42,6 +42,10 @@ var ReactGulpBrowserifyGenerator = yeoman.generators.Base.extend({
                 value: 'includeStylus',
                 checked: false
             }, {
+                name: 'jQuery',
+                value: 'includejQuery',
+                checked: true
+            }, {
                 name: 'Bootstrap',
                 value: 'includeBootstrap',
                 checked: true
@@ -75,6 +79,7 @@ var ReactGulpBrowserifyGenerator = yeoman.generators.Base.extend({
             // we change a bit this way of doing to automatically do this in the self.prompt() method.
             this.includeSass = hasFeature('includeSass');
             this.includeStylus = hasFeature('includeStylus');
+            this.includejQuery = hasFeature('includejQuery');
             this.includeBootstrap = hasFeature('includeBootstrap');
             this.includeModernizr = hasFeature('includeModernizr');
             this.includeJade = hasFeature('includeJade');
@@ -113,7 +118,11 @@ var ReactGulpBrowserifyGenerator = yeoman.generators.Base.extend({
             this.template('main.css', 'app/styles/main.css');
         }
 
-        this.copy('index.html', 'app/index.html');
+        if (this.includeJade) {
+            this.template('index.jade', 'app/index.jade');
+        } else {
+            this.template('index.html', 'app/index.html');
+        }
 
         if (this.includeCoffeeScript) {
             this.copy('app.coffee', 'app/scripts/app.coffee');
