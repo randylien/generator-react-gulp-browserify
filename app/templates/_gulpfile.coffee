@@ -37,7 +37,7 @@ gulp.task "sass", ->
   $.rubySass("./app/styles",
     style: "expanded"
     precision: 10
-    loadPath: [ "app/bower_components" ]).pipe($.autoprefixer("last 1 version")).pipe(gulp.dest("dist/styles")).pipe $.size()
+    <% if (includeBootstrap || includejQuery || includeModernizr) { %>loadPath: [ "app/bower_components" ]).pipe($.autoprefixer("last 1 version")).pipe(gulp.dest("dist/styles")).pipe $.size()<% } %>
 <% } if (includeStylus) { %>
 
 gulp.task "stylus", ->
@@ -86,7 +86,9 @@ gulp.task "images", ->
 # Fonts
 
 gulp.task "fonts", ->
+  <% if (includeBootstrap || includejQuery || includeModernizr) { %>
   gulp.src(require("main-bower-files")(filter: "**/*.{eot,svg,ttf,woff,woff2}").concat("app/fonts/**/*")).pipe gulp.dest("dist/fonts")
+  <% } %>
 
 # Clean
 
@@ -125,7 +127,7 @@ gulp.task "moveLibraries", [ "clean" ], ->
 # Bower helper
 
 gulp.task "bower", ->
-  gulp.src("app/bower_components/**/*.js", base: "app/bower_components").pipe gulp.dest("dist/bower_components/")
+  <% if (includeBootstrap || includejQuery || includeModernizr) { %>gulp.src("app/bower_components/**/*.js", base: "app/bower_components").pipe gulp.dest("dist/bower_components/")<% } %>
 
 gulp.task "json", ->
   gulp.src("app/scripts/json/**/*.json", base: "app/scripts").pipe gulp.dest("dist/scripts/")
@@ -141,7 +143,9 @@ gulp.task "extras", ->
 # Watch
 
 gulp.task "watch", [
+  <% if (includeJade) { %>"jade"<% } else { %>
   "html"
+  <% } %>
   "fonts"
   "bundle"
 ], ->
@@ -198,5 +202,5 @@ gulp.task "build", [
 gulp.task "default", [
   "clean"
   "build"
-  "jest"
+  <% if (includeJest) { %>"jest"<% } %>
 ]

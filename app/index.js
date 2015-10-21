@@ -119,7 +119,7 @@ var ReactGulpBrowserifyGenerator = yeoman.generators.Base.extend({
         }
 
         if (this.includeJade) {
-            this.template('index.jade', 'app/index.jade');
+            this.template('index.jade', 'app/template/index.jade');
         } else {
             this.template('index.html', 'app/index.html');
         }

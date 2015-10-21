@@ -24,7 +24,7 @@ var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 
 // Styles
-gulp.task('styles', ['sass', 'moveCss' <% if (includeStylus) { %> , 'stylus' <% } %> ]);
+gulp.task('styles', [<% if (includeSass) { %>'sass', <% } %>'moveCss'<% if (includeStylus) { %>, 'stylus' <% } %>]);
 
 gulp.task('moveCss',['clean'], function(){
   // the base option sets the relative root for the set of files,
@@ -32,18 +32,18 @@ gulp.task('moveCss',['clean'], function(){
   gulp.src(['./app/styles/**/*.css'], { base: './app/styles/' })
   .pipe(gulp.dest('dist/styles'));
 });
-
+<% if (includeSass) { %>
 gulp.task('sass', function() {
     return $.rubySass('./app/styles', {
             style: 'expanded',
-            precision: 10,
-            loadPath: ['app/bower_components']
+            precision: 10<% if (includeBootstrap || includejQuery || includeModernizr) { %>,
+            loadPath: ['app/bower_components']<% } %>
         })
         .pipe($.autoprefixer('last 1 version'))
         .pipe(gulp.dest('dist/styles'))
         .pipe($.size());
 });
-
+<% } %>
 <% if (includeStylus) { %>
 
 gulp.task('stylus', function() {
@@ -124,10 +124,12 @@ gulp.task('images', function() {
 
 // Fonts
 gulp.task('fonts', function() {
+    <% if (includeBootstrap || includejQuery || includeModernizr) { %>
     return gulp.src(require('main-bower-files')({
             filter: '**/*.{eot,svg,ttf,woff,woff2}'
         }).concat('app/fonts/**/*'))
         .pipe(gulp.dest('dist/fonts'));
+    <% } %>
 });
 
 // Clean
@@ -164,10 +166,10 @@ gulp.task('moveLibraries',['clean'], function(){
 
 // Bower helper
 gulp.task('bower', function() {
-    gulp.src('app/bower_components/**/*.js', {
+    <% if (includeBootstrap || includejQuery || includeModernizr) { %>gulp.src('app/bower_components/**/*.js', {
             base: 'app/bower_components'
         })
-        .pipe(gulp.dest('dist/bower_components/'));
+        .pipe(gulp.dest('dist/bower_components/'));<% } %>
 
 });
 
