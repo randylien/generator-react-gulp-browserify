@@ -103,7 +103,7 @@ describe('react-gulp-browserify generator with Jade', function () {
         'bower.json',
         'package.json',
         'gulpfile.js',
-        'app/index.jade',
+        'app/template/index.jade',
         'app/scripts/ui/Timer.js',
         'app/scripts/app.js'
     ];
@@ -401,7 +401,7 @@ describe('react-gulp-browserify generator with jade, modernizr, bootstrap, stylu
         'package.json',
         'gulpfile.js',
         'gulpfile.coffee',
-        'app/index.jade',
+        'app/template/index.jade',
         'app/scripts/ui/Timer.coffee',
         'app/scripts/app.coffee',
         'app/styles/main.styl'
