@@ -351,7 +351,7 @@ describe('react-gulp-browserify generator with jade, modernizr, bootstrap, sass,
         'package.json',
         'gulpfile.js',
         'gulpfile.coffee',
-        'app/index.jade',
+        'app/template/index.jade',
         'app/scripts/ui/Timer.coffee',
         'app/scripts/app.coffee',
         'app/styles/main.scss'
