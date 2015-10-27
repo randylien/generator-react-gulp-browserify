@@ -1,4 +1,5 @@
 React = window.React = require("react")
+ReactDOM = require("react-dom")
 Timer = require("./ui/Timer.coffee")
 mountNode = document.getElementById("app")
 TodoList = React.createClass(
@@ -39,4 +40,4 @@ TodoApp = React.createClass(
       value: @state.text
     ), React.createElement("button", null, "Add #" + (@state.items.length + 1))), React.createElement(Timer, null)
 )
-React.render React.createElement(TodoApp, null), mountNode
+ReactDOM.render React.createElement(TodoApp, null), mountNode

@@ -1,9 +1,11 @@
 {
   "name": "<%= _.slugify(projectName) %>",
   "version": "0.0.1",
-  "dependencies": {
-    "jquery": "~2.1.1",
-    "bootstrap-sass-official": ">=3.3.0",
-    "modernizr": "^2.8.3"
+  "dependencies": {<% if (includeBootstrap || includejQuery) { %>
+    "jquery": "~2.1.1"<% if (includeBootstrap || includeModernizr) { %>,<% } } if (includeBootstrap && (!includeSass && !includeStylus)) { %>
+    "bootstrap": ">=3.3.5"<% if (includeModernizr) { %>,<% } } if (includeBootstrap && includeSass) { %>
+    "bootstrap-sass-official": ">=3.3.0"<% if (includeModernizr) { %>,<% } } if (includeBootstrap && includeStylus) { %>
+    "bootstrap-stylus": ">=4.0.5"<% if (includeModernizr) { %>,<% } } if (includeModernizr) { %>
+    "modernizr": "^2.8.3"<% } %>
   }
 }
