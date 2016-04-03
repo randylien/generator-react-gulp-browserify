@@ -9,6 +9,7 @@ var path = require('path');
 
 // Load plugins
 var $ = require('gulp-load-plugins')();
+var babelify = require('babelify');
 var browserify = require('browserify');
 var watchify = require('watchify');
 var source = require('vinyl-source-stream'),
@@ -83,8 +84,9 @@ function rebundle() {
 gulp.task('scripts', rebundle);
 
 gulp.task('buildScripts', function() {
-    return browserify(sourceFile)
-        .bundle()
+  var bundler = browserify(sourceFile);
+  bundler.transform(babelify);
+  bundler.bundle()
         .pipe(source(destFileName))
         .pipe(gulp.dest('dist/scripts'));
 });

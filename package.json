@@ -26,6 +26,7 @@
   "keywords": [
     "yeoman-generator",
     "react",
+    "babelify",
     "browserify",
     "gulp"
   ],
