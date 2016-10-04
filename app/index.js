@@ -44,7 +44,7 @@ var ReactGulpBrowserifyGenerator = yeoman.generators.Base.extend({
             }, {
                 name: 'jQuery',
                 value: 'includejQuery',
-                checked: true
+                checked: false
             }, {
                 name: 'Bootstrap',
                 value: 'includeBootstrap',
@@ -56,11 +56,11 @@ var ReactGulpBrowserifyGenerator = yeoman.generators.Base.extend({
             }, {
                 name: 'HTML template - Jade',
                 value: 'includeJade',
-                checked: true
+                checked: false
             }, {
                 name: 'CoffeeScript for JavaScript',
                 value: 'includeCoffeeScript',
-                checked: true
+                checked: false
             }, {
                 name: 'Jest for unit tests',
                 value: 'includeJest',
