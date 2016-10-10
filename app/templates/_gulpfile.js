@@ -188,7 +188,7 @@ gulp.task('extras', function() {
 });
 
 // Watch
-gulp.task('watch', ['html', 'fonts', 'bundle'], function() {
+gulp.task('watch', [<% if (includeJade) { %>'jade'<% } else {%>'html'<% } %>, 'fonts', 'bundle'], function() {
 
     browserSync({
         notify: false,
@@ -218,7 +218,7 @@ gulp.task('watch', ['html', 'fonts', 'bundle'], function() {
 });
 
 // Build
-gulp.task('build', ['html', 'buildBundle', 'images', 'fonts', 'extras'], function() {
+gulp.task('build', [<% if (includeJade) { %>'jade'<% } else {%>'html'<% } %>, 'buildBundle', 'images', 'fonts', 'extras'], function() {
     gulp.src('dist/scripts/app.js')
         .pipe($.uglify())
         .pipe($.stripDebug())
